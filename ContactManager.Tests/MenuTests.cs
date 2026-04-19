@@ -1,19 +1,9 @@
-using ContactManager.Core;
+using ContactManager.Tests.Tools;
 
 namespace ContactManager.Tests;
 
-public class MenuTests
+public class MenuTests : BaseMenuTests
 {
-    private ContactService service = new(new InMemoryContactRepository());
-    private FakeConsole console = new();
-
-    private Menu menu;
-
-    public MenuTests()
-    {
-        menu = new Menu(console, service);
-    }
-
     [Fact]
     public void Menu_Shows_Quit_Option_And_Q_Exits()
     {

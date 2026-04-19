@@ -1,20 +1,9 @@
-using ContactManager.Core;
+using ContactManager.Tests.Tools;
 
 namespace ContactManager.Tests.AddContact;
 
-public class AddContactMenuTests
+public class AddContactMenuTests : BaseMenuTests
 {
-    private readonly InMemoryContactRepository repository = new();
-    private readonly ContactService service;
-    private readonly FakeConsole console = new();
-    private readonly Menu menu;
-
-    public AddContactMenuTests()
-    {
-        service = new ContactService(repository);
-        menu = new Menu(console, service);
-    }
-
     [Fact]
     public void Menu_AddContact_Flow()
     {
