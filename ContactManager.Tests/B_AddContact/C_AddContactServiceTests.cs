@@ -1,5 +1,3 @@
-using ContactManager.Core;
-
 namespace ContactManager.Tests.B_AddContact;
 
 public class C_AddContactServiceTests : BaseServiceTests

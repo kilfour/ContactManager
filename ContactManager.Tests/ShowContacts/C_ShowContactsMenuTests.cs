@@ -1,5 +1,3 @@
-using ContactManager.Core;
-
 namespace ContactManager.Tests.ShowContacts;
 
 public class C_ShowContactsMenuTests : BaseMenuTests
