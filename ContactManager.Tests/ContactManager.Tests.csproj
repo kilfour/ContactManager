@@ -24,4 +24,8 @@
     <ProjectReference Include="..\ContactManager.Core\ContactManager.Core.csproj" />
   </ItemGroup>
 
+  <!-- <ItemGroup>
+    <ProjectReference Include="..\..\QuickCheckr\QuickCheckr\QuickCheckr.csproj" />
+  </ItemGroup> -->
+
 </Project>
