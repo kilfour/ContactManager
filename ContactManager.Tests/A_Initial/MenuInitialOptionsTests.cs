@@ -1,8 +1,6 @@
-using ContactManager.Tests.Tools;
-
 namespace ContactManager.Tests;
 
-public class MenuTests : BaseMenuTests
+public class MenuInitialOptionsTests : BaseMenuTests
 {
     [Fact]
     public void Menu_Shows_Quit_Option_And_Q_Exits()

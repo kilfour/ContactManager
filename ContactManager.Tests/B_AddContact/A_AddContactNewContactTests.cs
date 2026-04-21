@@ -1,8 +1,8 @@
 using ContactManager.Core;
 
-namespace ContactManager.Tests.AddContact;
+namespace ContactManager.Tests.B_AddContact;
 
-public class AddContactNewContactTests
+public class A_AddContactNewContactTests
 {
     [Fact]
     public void AddContact_Ctor()

@@ -1,6 +1,6 @@
 using ContactManager.Core;
 
-namespace ContactManager.Tests;
+namespace ContactManager.Tests.Tools;
 
 public class FakeConsole : IConsole
 {

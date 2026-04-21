@@ -16,6 +16,7 @@ public class Menu(IConsole console, ContactService service)
     private void ShowMenu()
     {
         console.WriteLine("1. Contact Toevoegen");
+        console.WriteLine("2. Contacten Tonen");
         console.WriteLine("q. Exit");
         console.Write("Maak uw keuze:");
     }
@@ -25,6 +26,7 @@ public class Menu(IConsole console, ContactService service)
         switch (choice)
         {
             case "1": HandleAddContact(); break;
+            case "2": HandleShowContacts(); break;
             case "q": return false;
             default: console.WriteLine("Ongeldige optie."); break;
         }
@@ -38,4 +40,32 @@ public class Menu(IConsole console, ContactService service)
         service.AddContact(name);
         console.WriteLine($"Contact toegevoegd: {name}");
     }
+
+    private void HandleShowContacts()
+    {
+        var contacts = service.GetContactsOverview();
+        DrawTitle("Contacten");
+        if (contacts.Count == 0)
+            console.WriteLine("Geen contacten gevonden.");
+        foreach (var contact in contacts)
+        {
+            console.WriteLine(contact);
+        }
+        DrawLine();
+    }
+
+    const int Width = 30;
+
+    private void DrawTitle(string title)
+    {
+        string label = $" {title} ";
+        var middle = label.Length;
+        var left = (Width - middle) / 2;
+        var right = Width - left - middle;
+        console.WriteLine($"{Line(left)}{label}{Line(right)}");
+    }
+
+    private void DrawLine() => console.WriteLine(Line());
+    private static string Line(int length = Width) => new('-', length);
+
 }

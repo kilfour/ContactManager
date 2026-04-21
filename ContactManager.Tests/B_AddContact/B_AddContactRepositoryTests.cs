@@ -1,11 +1,9 @@
 using ContactManager.Core;
 
-namespace ContactManager.Tests.AddContact;
+namespace ContactManager.Tests.B_AddContact;
 
-public class AddContactRepositoryTests
+public class B_AddContactRepositoryTests : BaseRepositoryTests
 {
-    private readonly InMemoryContactRepository repository = new();
-
     [Fact]
     public void AddContact_ContactAdded()
     {
