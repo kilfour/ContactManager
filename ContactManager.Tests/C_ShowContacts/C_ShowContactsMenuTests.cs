@@ -1,4 +1,4 @@
-namespace ContactManager.Tests.ShowContacts;
+namespace ContactManager.Tests.C_ShowContacts;
 
 public class C_ShowContactsMenuTests : BaseMenuTests
 {
@@ -21,15 +21,6 @@ public class C_ShowContactsMenuTests : BaseMenuTests
             , "Geen contacten gevonden."
             , "------------------------------"];
         Assert.Equal(expected, console.Output.Skip(index - 1).Take(3).ToArray());
-    }
-
-    [Fact]
-    public void Menu_Check_Box_Format()
-    {
-        PickOption('2');
-        RunMenuAndQuit();
-
-        Assert.Contains("Geen contacten gevonden.", console.Output);
     }
 
     [Fact]

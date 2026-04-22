@@ -1,8 +1,8 @@
 using ContactManager.Core;
 
-namespace ContactManager.Tests.ShowContacts;
+namespace ContactManager.Tests.C_ShowContacts;
 
-public class ShowContactsServiceTests : BaseServiceTests
+public class B_ShowContactsServiceTests : BaseServiceTests
 {
     [Fact]
     public void ShowContacts_ReturnsStringRepresentatioOfContacts()

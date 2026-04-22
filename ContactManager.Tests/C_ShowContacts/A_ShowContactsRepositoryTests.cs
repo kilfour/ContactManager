@@ -1,8 +1,8 @@
 using ContactManager.Core;
 
-namespace ContactManager.Tests.ShowContacts;
+namespace ContactManager.Tests.C_ShowContacts;
 
-public class ShowContactsRepositoryTests : BaseRepositoryTests
+public class A_ShowContactsRepositoryTests : BaseRepositoryTests
 {
     [Fact]
     public void GetAll_Works() // already tested, but hey
