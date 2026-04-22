@@ -48,22 +48,22 @@ public class Menu(IConsole console, ContactService service)
         console.WriteLine("Voer een id in: ");
         if (int.TryParse(console.ReadLine(), out var id))
         {
-            console.WriteLine("Voer een naam in: ");
-            var name = console.ReadLine();
-            if (service.UpdateContact(id, name))
-            {
-                console.WriteLine($"Contact '{id}' bijgewerkt.");
-            }
-            else
-            {
-                console.WriteLine($"Contact '{id}' niet gevonden.");
-            }
-        }
-        else
-        {
-            console.WriteLine("Ongeldige id.");
+            UpdateThisContact(id);
             return;
         }
+        console.WriteLine("Ongeldige id.");
+    }
+
+    private void UpdateThisContact(int id)
+    {
+        console.WriteLine("Voer een naam in: ");
+        var name = console.ReadLine();
+        if (service.UpdateContact(id, name))
+        {
+            console.WriteLine($"Contact '{id}' bijgewerkt.");
+            return;
+        }
+        console.WriteLine($"Contact '{id}' niet gevonden.");
     }
 
     private void HandleShowContacts()
