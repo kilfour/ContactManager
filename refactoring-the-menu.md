@@ -194,3 +194,22 @@ b47e308 minor cleanup
 ```
 
 > [On Github](https://github.com/kilfour/ContactManager/commits/us3/)
+
+
+Waardoor de wijzigingen benodigd voor US4 in `Menu` zich beperken tot:
+
+1. Een nieuw item toevoegen aan de `MenuOption` array:
+   ```csharp
+    MenuOption("4","Contact Verwijderen", HandleDeleteContact)
+   ```
+2. HandleDeleteContact implementeren:
+   ```csharp
+   private bool HandleDeleteContact()
+   {
+       if (prompter.AskForNumber("Voer een id in: ", out var id, "Ongeldige id."))
+           printer.WriteIf(service.DeleteContact(id),
+               $"Contact '{id}' verwijdert.",
+               $"Contact '{id}' niet gevonden.");
+       return true;
+   }
+   ```

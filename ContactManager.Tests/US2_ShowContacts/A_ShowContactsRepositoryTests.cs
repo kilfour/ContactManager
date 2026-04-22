@@ -1,4 +1,3 @@
-using ContactManager.Core;
 using ContactManager.Core.Domain;
 
 namespace ContactManager.Tests.US2_ShowContacts;
