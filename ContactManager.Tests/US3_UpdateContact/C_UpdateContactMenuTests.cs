@@ -1,5 +1,3 @@
-using QuickPulse.Show;
-
 namespace ContactManager.Tests.US3_UpdateContact;
 
 public class C_UpdateContactMenuTests : BaseMenuTests
@@ -8,7 +6,7 @@ public class C_UpdateContactMenuTests : BaseMenuTests
     public void Menu_Initial_Shows_Update_Contact_Option()
     {
         RunMenuAndQuit();
-        Assert.Contains("3. Contact Bewerken", console.Output);
+        Assert.Contains(" 3. Contact Bewerken", console.Output);
     }
 
     [Fact]

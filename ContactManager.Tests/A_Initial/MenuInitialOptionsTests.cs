@@ -7,7 +7,7 @@ public class MenuInitialOptionsTests : BaseMenuTests
     {
         console.Input.Enqueue("q");
         Assert.Equal(0, menu.Run());
-        Assert.Contains("q. Exit", console.Output);
+        Assert.Contains(" q. Exit", console.Output);
     }
 
     [Fact]

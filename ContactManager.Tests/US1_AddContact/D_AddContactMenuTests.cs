@@ -6,7 +6,7 @@ public class D_AddContactMenuTests : BaseMenuTests
     public void Menu_Initial_Shows_Add_Contact_Option()
     {
         RunMenuAndQuit();
-        Assert.Contains("1. Contact Toevoegen", console.Output);
+        Assert.Contains(" 1. Contact Toevoegen", console.Output);
     }
 
     [Fact]

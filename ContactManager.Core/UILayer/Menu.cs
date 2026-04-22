@@ -14,21 +14,23 @@ public class Menu(IConsole console, ContactService service)
         while (running)
         {
             ShowMenu();
-            running = HandleChoice(console.ReadLine());
+            running = HandleMenuChoice(console.ReadLine());
         }
         return 0;
     }
 
     private void ShowMenu()
     {
-        console.WriteLine("1. Contact Toevoegen");
-        console.WriteLine("2. Contacten Tonen");
-        console.WriteLine("3. Contact Bewerken");
-        console.WriteLine("q. Exit");
+        printer.WriteSection("Menu",
+            [ "1. Contact Toevoegen"
+            , "2. Contacten Tonen"
+            , "3. Contact Bewerken"
+            , "q. Exit"
+            ]);
         console.Write("Maak uw keuze:");
     }
 
-    private bool HandleChoice(string choice)
+    private bool HandleMenuChoice(string choice)
     {
         switch (choice)
         {
@@ -51,10 +53,10 @@ public class Menu(IConsole console, ContactService service)
     private void HandleUpdateContact()
     {
         if (prompter.AskForNumber("Voer een id in: ", out var id, "Ongeldige id."))
-            UpdateThisContact(id);
+            UpdateContactById(id);
     }
 
-    private void UpdateThisContact(int id)
+    private void UpdateContactById(int id)
     {
         var name = prompter.AskForText("Voer een naam in: ");
         printer.WriteIf(service.UpdateContact(id, name),

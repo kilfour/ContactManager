@@ -6,7 +6,7 @@ public class C_ShowContactsMenuTests : BaseMenuTests
     public void Menu_Initial_Shows_Add_Contact_Option()
     {
         RunMenuAndQuit();
-        Assert.Contains("2. Contacten Tonen", console.Output);
+        Assert.Contains(" 2. Contacten Tonen", console.Output);
     }
 
     [Fact]
