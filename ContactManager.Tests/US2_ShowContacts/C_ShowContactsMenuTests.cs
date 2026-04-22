@@ -14,11 +14,11 @@ public class C_ShowContactsMenuTests : BaseMenuTests
     {
         PickOption('2');
         RunMenuAndQuit();
-        var index = console.Output.IndexOf("Geen contacten gevonden.");
+        var index = console.Output.IndexOf(" Geen contacten gevonden.");
         Assert.True(index > 0);
         string[] expected =
             [ "--------- Contacten ----------"
-            , "Geen contacten gevonden."
+            , " Geen contacten gevonden."
             , "------------------------------"];
         Assert.Equal(expected, console.Output.Skip(index - 1).Take(3).ToArray());
     }
@@ -29,7 +29,7 @@ public class C_ShowContactsMenuTests : BaseMenuTests
         AddContact("Elvis", "Presley");
         PickOption('2');
         RunMenuAndQuit();
-        Assert.Contains("1. Elvis", console.Output);
-        Assert.Contains("2. Presley", console.Output);
+        Assert.Contains(" 1. Elvis", console.Output);
+        Assert.Contains(" 2. Presley", console.Output);
     }
 }

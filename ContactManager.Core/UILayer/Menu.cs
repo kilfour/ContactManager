@@ -67,29 +67,8 @@ public class Menu(IConsole console, ContactService service)
 
     private void HandleShowContacts()
     {
-        var contacts = service.GetContactsOverview();
-        DrawTitle("Contacten");
-        if (contacts.Count == 0)
-            console.WriteLine("Geen contacten gevonden.");
-        foreach (var contact in contacts)
-        {
-            console.WriteLine(contact);
-        }
-        DrawLine();
+        var contactsOverview = service.GetContactsOverview();
+        var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview;
+        printer.Section("Contacten", content);
     }
-
-    const int Width = 30;
-
-    private void DrawTitle(string title)
-    {
-        string label = $" {title} ";
-        var middle = label.Length;
-        var left = (Width - middle) / 2;
-        var right = Width - left - middle;
-        console.WriteLine($"{Line(left)}{label}{Line(right)}");
-    }
-
-    private void DrawLine() => console.WriteLine(Line());
-    private static string Line(int length = Width) => new('-', length);
-
 }
