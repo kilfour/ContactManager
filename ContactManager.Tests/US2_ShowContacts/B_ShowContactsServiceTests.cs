@@ -1,6 +1,6 @@
 using ContactManager.Core;
 
-namespace ContactManager.Tests.C_ShowContacts;
+namespace ContactManager.Tests.US2_ShowContacts;
 
 public class B_ShowContactsServiceTests : BaseServiceTests
 {

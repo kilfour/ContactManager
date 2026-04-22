@@ -1,4 +1,4 @@
-namespace ContactManager.Tests.C_ShowContacts;
+namespace ContactManager.Tests.US2_ShowContacts;
 
 public class C_ShowContactsMenuTests : BaseMenuTests
 {
