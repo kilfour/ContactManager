@@ -99,6 +99,8 @@ public class Menu(IConsole console, ContactService service)
 ```
 ## After
 ```csharp
+public record MenuOption(string Key, string Label, Func<bool> Handler);
+
 public class Menu
 {
     private readonly MenuOption[] menuOptions;
