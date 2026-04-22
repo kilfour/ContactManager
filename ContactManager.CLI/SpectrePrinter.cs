@@ -9,34 +9,31 @@ public class SpectrePrinter : IPrinter
 
     public void WriteMessage(string text)
     {
-        console.MarkupLine(Escape(text));
+        console.MarkupLine($"[blue]{text}[/]");
     }
 
     public void WriteIf(bool condition, string ifTrue, string ifFalse)
     {
         if (condition)
         {
-            console.MarkupLine($"[green]{Escape(ifTrue)}[/]");
+            console.MarkupLine($"[green]{ifTrue}[/]");
             return;
         }
 
-        console.MarkupLine($"[red]{Escape(ifFalse)}[/]");
+        console.MarkupLine($"[red]{ifFalse}[/]");
     }
 
     public void WriteSection(string title, List<string> content)
     {
-        var body = new Rows(content.Select(a => new Markup(Escape(a))).ToArray());
+        var body = new Rows([.. content.Select(a => new Markup(a))]);
 
         var panel =
             new Panel(body)
-                .Header($"[yellow]{Escape(title)}[/]")
+                .Header($"[yellow]{title}[/]")
                 .Border(BoxBorder.Rounded)
                 .Padding(1, 0);
 
         console.Write(panel);
         console.WriteLine();
     }
-
-    private static string Escape(string text) =>
-        text.Replace("[", "[[").Replace("]", "]]");
 }
