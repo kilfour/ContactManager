@@ -8,7 +8,7 @@ public class C_SearchContactMenuTests : BaseMenuTests
     public void Menu_Initial_Shows_Update_Contact_Option()
     {
         RunMenuAndQuit();
-        Assert.Contains(" 5. Contact Zoeken", console.Output.PulseToQuickLog());
+        Assert.Contains(" 5. Contact Zoeken", console.Output);
     }
 
     [Fact]
