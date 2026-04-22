@@ -2,6 +2,8 @@ namespace ContactManager.Core;
 
 public class Menu(IConsole console, ContactService service)
 {
+    private readonly Prompter prompter = new(console);
+
     public int Run()
     {
         var running = true;
@@ -37,27 +39,20 @@ public class Menu(IConsole console, ContactService service)
 
     private void HandleAddContact()
     {
-        console.WriteLine("Voer een naam in: ");
-        var name = console.ReadLine();
+        var name = prompter.AskForText("Voer een naam in: ");
         service.AddContact(name);
         console.WriteLine($"Contact toegevoegd: {name}");
     }
 
     private void HandleUpdateContact()
     {
-        console.WriteLine("Voer een id in: ");
-        if (int.TryParse(console.ReadLine(), out var id))
-        {
+        if (prompter.AskForNumber("Voer een id in: ", out var id, "Ongeldige id."))
             UpdateThisContact(id);
-            return;
-        }
-        console.WriteLine("Ongeldige id.");
     }
 
     private void UpdateThisContact(int id)
     {
-        console.WriteLine("Voer een naam in: ");
-        var name = console.ReadLine();
+        var name = prompter.AskForText("Voer een naam in: ");
         if (service.UpdateContact(id, name))
         {
             console.WriteLine($"Contact '{id}' bijgewerkt.");
