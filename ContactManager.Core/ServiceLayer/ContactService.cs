@@ -3,7 +3,7 @@ using ContactManager.Core.Domain;
 
 namespace ContactManager.Core.ServiceLayer;
 
-public class ContactService(InMemoryContactRepository repository)
+public class ContactService(IContactRepository repository)
 {
     public void AddContact(string naam) => repository.Add(new Contact(naam));
 
@@ -22,6 +22,7 @@ public class ContactService(InMemoryContactRepository repository)
         var contact = repository.GetById(id);
         if (contact == null) return false;
         contact.Name = name;
+        repository.Commit();
         return true;
     }
 

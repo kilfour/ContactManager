@@ -2,7 +2,7 @@ using ContactManager.Core.Domain;
 
 namespace ContactManager.Core.DataLayer;
 
-public class InMemoryContactRepository
+public class InMemoryContactRepository : IContactRepository
 {
     private readonly List<Contact> contacts = [];
     private int lastId = 0;
@@ -26,4 +26,6 @@ public class InMemoryContactRepository
 
     public IReadOnlyList<Contact> Search(string search)
         => [.. contacts.Where(c => c.Name.Contains(search, StringComparison.CurrentCultureIgnoreCase))];
+
+    public void Commit() { }
 }
