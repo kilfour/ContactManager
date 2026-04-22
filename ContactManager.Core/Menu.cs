@@ -28,6 +28,7 @@ public class Menu(IConsole console, ContactService service)
         {
             case "1": HandleAddContact(); break;
             case "2": HandleShowContacts(); break;
+            case "3": HandleUpdateContact(); break;
             case "q": return false;
             default: console.WriteLine("Ongeldige optie."); break;
         }
@@ -40,6 +41,29 @@ public class Menu(IConsole console, ContactService service)
         var name = console.ReadLine();
         service.AddContact(name);
         console.WriteLine($"Contact toegevoegd: {name}");
+    }
+
+    private void HandleUpdateContact()
+    {
+        console.WriteLine("Voer een id in: ");
+        if (int.TryParse(console.ReadLine(), out var id))
+        {
+            console.WriteLine("Voer een naam in: ");
+            var name = console.ReadLine();
+            if (service.UpdateContact(id, name))
+            {
+                console.WriteLine($"Contact '{id}' bijgewerkt.");
+            }
+            else
+            {
+                console.WriteLine($"Contact '{id}' niet gevonden.");
+            }
+        }
+        else
+        {
+            console.WriteLine("Ongeldige id.");
+            return;
+        }
     }
 
     private void HandleShowContacts()
