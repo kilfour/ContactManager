@@ -57,18 +57,15 @@ public class Menu(IConsole console, ContactService service)
     private void UpdateThisContact(int id)
     {
         var name = prompter.AskForText("Voer een naam in: ");
-        if (service.UpdateContact(id, name))
-        {
-            console.WriteLine($"Contact '{id}' bijgewerkt.");
-            return;
-        }
-        console.WriteLine($"Contact '{id}' niet gevonden.");
+        printer.WriteIf(service.UpdateContact(id, name),
+            $"Contact '{id}' bijgewerkt.",
+            $"Contact '{id}' niet gevonden.");
     }
 
     private void HandleShowContacts()
     {
         var contactsOverview = service.GetContactsOverview();
         var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview;
-        printer.Section("Contacten", content);
+        printer.WriteSection("Contacten", content);
     }
 }
