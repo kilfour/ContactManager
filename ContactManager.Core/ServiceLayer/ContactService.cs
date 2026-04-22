@@ -12,7 +12,7 @@ public class ContactService(InMemoryContactRepository repository)
         var result = new List<string>();
         foreach (var contact in repository.GetAll())
         {
-            result.Add($"{contact.Id}. {contact.Name}");
+            result.Add(FormatContact(contact));
         }
         return result;
     }
@@ -27,4 +27,19 @@ public class ContactService(InMemoryContactRepository repository)
 
     public bool DeleteContact(int id)
         => repository.Delete(id);
+
+    public List<string> Search(string search)
+    {
+        var result = new List<string>();
+        foreach (var contact in repository.Search(search))
+        {
+            result.Add(FormatContact(contact));
+        }
+        return result;
+    }
+
+    private static string FormatContact(Contact contact)
+    {
+        return $"{contact.Id}. {contact.Name}";
+    }
 }

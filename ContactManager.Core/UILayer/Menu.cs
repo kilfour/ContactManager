@@ -20,6 +20,7 @@ public class Menu
             , new MenuOption("2","Contacten Tonen",     HandleShowContacts)
             , new MenuOption("3","Contact Bewerken",    HandleUpdateContact)
             , new MenuOption("4","Contact Verwijderen", HandleDeleteContact)
+            , new MenuOption("5","Contact Zoeken",      HandleSearchContact)
             , new MenuOption("q","Exit", () => false)
             ];
     }
@@ -87,6 +88,15 @@ public class Menu
             printer.WriteIf(service.DeleteContact(id),
                 $"Contact '{id}' verwijdert.",
                 $"Contact '{id}' niet gevonden.");
+        return true;
+    }
+
+    private bool HandleSearchContact()
+    {
+        var search = prompter.AskForTextOnNewLine("Voer een zoekterm in: ");
+        var contactsOverview = service.Search(search);
+        var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview;
+        printer.WriteSection("Contacten", content);
         return true;
     }
 }

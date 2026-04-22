@@ -23,4 +23,7 @@ public class InMemoryContactRepository
         contacts.Remove(contact);
         return true;
     }
+
+    public IReadOnlyList<Contact> Search(string search)
+        => [.. contacts.Where(c => c.Name.Contains(search, StringComparison.CurrentCultureIgnoreCase))];
 }
