@@ -1,4 +1,4 @@
-﻿namespace ContactManager.Core;
+﻿namespace ContactManager.Core.Domain;
 
 public class Contact(string name)
 {

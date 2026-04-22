@@ -1,4 +1,4 @@
-namespace ContactManager.Core;
+namespace ContactManager.Core.UILayer.Bolts;
 
 public class Prompter(IConsole console)
 {

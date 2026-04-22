@@ -1,8 +1,12 @@
-namespace ContactManager.Core;
+using ContactManager.Core.ServiceLayer;
+using ContactManager.Core.UILayer.Bolts;
+
+namespace ContactManager.Core.UILayer;
 
 public class Menu(IConsole console, ContactService service)
 {
     private readonly Prompter prompter = new(console);
+    private readonly Printer printer = new(console);
 
     public int Run()
     {

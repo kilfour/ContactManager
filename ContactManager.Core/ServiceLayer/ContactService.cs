@@ -1,4 +1,7 @@
-namespace ContactManager.Core;
+using ContactManager.Core.DataLayer;
+using ContactManager.Core.Domain;
+
+namespace ContactManager.Core.ServiceLayer;
 
 public class ContactService(InMemoryContactRepository repository)
 {

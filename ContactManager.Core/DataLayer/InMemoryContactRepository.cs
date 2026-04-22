@@ -1,4 +1,6 @@
-namespace ContactManager.Core;
+using ContactManager.Core.Domain;
+
+namespace ContactManager.Core.DataLayer;
 
 public class InMemoryContactRepository
 {

@@ -1,4 +1,7 @@
-using ContactManager.Core;
+using ContactManager.Core.DataLayer;
+using ContactManager.Core.Domain;
+using ContactManager.Core.ServiceLayer;
+using ContactManager.Core.UILayer;
 using ContactManager.Tests.Tools;
 
 namespace ContactManager.Tests;
