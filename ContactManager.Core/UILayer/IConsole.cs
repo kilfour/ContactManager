@@ -1,4 +1,4 @@
-namespace ContactManager.Core;
+namespace ContactManager.Core.UILayer;
 
 public interface IConsole
 {

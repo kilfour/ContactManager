@@ -1,6 +1,6 @@
-using ContactManager.Core;
+using ContactManager.Core.Domain;
 
-namespace ContactManager.Tests.B_AddContact;
+namespace ContactManager.Tests.US1_AddContact;
 
 public class A_AddContactNewContactTests
 {

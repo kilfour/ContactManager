@@ -1,4 +1,4 @@
-namespace ContactManager.Tests.B_AddContact;
+namespace ContactManager.Tests.US1_AddContact;
 
 public class D_AddContactMenuTests : BaseMenuTests
 {
@@ -6,7 +6,7 @@ public class D_AddContactMenuTests : BaseMenuTests
     public void Menu_Initial_Shows_Add_Contact_Option()
     {
         RunMenuAndQuit();
-        Assert.Contains("1. Contact Toevoegen", console.Output);
+        Assert.Contains(" 1. Contact Toevoegen", console.Output);
     }
 
     [Fact]

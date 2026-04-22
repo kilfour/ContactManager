@@ -1,4 +1,8 @@
-using ContactManager.Core;
+using ContactManager.Core.DataLayer;
+using ContactManager.Core.Domain;
+using ContactManager.Core.ServiceLayer;
+using ContactManager.Core.UILayer;
+using ContactManager.Core.UILayer.Bolts;
 using ContactManager.Tests.Tools;
 
 namespace ContactManager.Tests;
@@ -13,7 +17,7 @@ public abstract class BaseMenuTests
     public BaseMenuTests()
     {
         service = new ContactService(repository);
-        menu = new Menu(console, service);
+        menu = new Menu(service, new Prompter(console), new Printer(console));
     }
 
     protected void RunMenuAndQuit()

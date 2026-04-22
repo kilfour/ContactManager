@@ -1,4 +1,4 @@
-using ContactManager.Core;
+using ContactManager.Core.DataLayer;
 
 namespace ContactManager.Tests;
 
