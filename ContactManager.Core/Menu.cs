@@ -17,6 +17,7 @@ public class Menu(IConsole console, ContactService service)
     {
         console.WriteLine("1. Contact Toevoegen");
         console.WriteLine("2. Contacten Tonen");
+        console.WriteLine("3. Contact Bewerken");
         console.WriteLine("q. Exit");
         console.Write("Maak uw keuze:");
     }

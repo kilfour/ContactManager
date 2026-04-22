@@ -13,4 +13,12 @@ public class ContactService(InMemoryContactRepository repository)
         }
         return result;
     }
+
+    public bool UpdateContact(int id, string name)
+    {
+        var contact = repository.GetById(id);
+        if (contact == null) return false;
+        contact.Name = name;
+        return true;
+    }
 }

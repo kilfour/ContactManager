@@ -6,8 +6,11 @@ public class InMemoryContactRepository
     private int lastId = 0;
     public void Add(Contact contact)
     {
-        contact.SetId(++lastId);
+        contact.Id = ++lastId;
         contacts.Add(contact);
     }
     public IReadOnlyList<Contact> GetAll() => contacts;
+
+    public Contact? GetById(int id)
+        => contacts.FirstOrDefault(c => c.Id == id);
 }
