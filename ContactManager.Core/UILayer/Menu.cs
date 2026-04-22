@@ -16,9 +16,10 @@ public class Menu
         this.prompter = prompter;
         this.printer = printer;
         menuOptions =
-            [ new MenuOption("1","Contact Toevoegen", HandleAddContact)
-            , new MenuOption("2","Contacten Tonen",   HandleShowContacts)
-            , new MenuOption("3","Contact Bewerken",  HandleUpdateContact)
+            [ new MenuOption("1","Contact Toevoegen",   HandleAddContact)
+            , new MenuOption("2","Contacten Tonen",     HandleShowContacts)
+            , new MenuOption("3","Contact Bewerken",    HandleUpdateContact)
+            , new MenuOption("4","Contact Verwijderen", HandleDeleteContact)
             , new MenuOption("q","Exit", () => false)
             ];
     }
@@ -57,6 +58,14 @@ public class Menu
         return true;
     }
 
+    private bool HandleShowContacts()
+    {
+        var contactsOverview = service.GetContactsOverview();
+        var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview;
+        printer.WriteSection("Contacten", content);
+        return true;
+    }
+
     private bool HandleUpdateContact()
     {
         if (prompter.AskForNumber("Voer een id in: ", out var id, "Ongeldige id."))
@@ -72,11 +81,12 @@ public class Menu
             $"Contact '{id}' niet gevonden.");
     }
 
-    private bool HandleShowContacts()
+    private bool HandleDeleteContact()
     {
-        var contactsOverview = service.GetContactsOverview();
-        var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview;
-        printer.WriteSection("Contacten", content);
+        if (prompter.AskForNumber("Voer een id in: ", out var id, "Ongeldige id."))
+            printer.WriteIf(service.DeleteContact(id),
+                $"Contact '{id}' verwijdert.",
+                $"Contact '{id}' niet gevonden.");
         return true;
     }
 }

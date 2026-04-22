@@ -15,4 +15,12 @@ public class InMemoryContactRepository
 
     public Contact? GetById(int id)
         => contacts.FirstOrDefault(c => c.Id == id);
+
+    public bool Delete(int id)
+    {
+        var contact = contacts.FirstOrDefault(c => c.Id == id);
+        if (contact is null) return false;
+        contacts.Remove(contact);
+        return true;
+    }
 }

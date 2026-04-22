@@ -24,4 +24,7 @@ public class ContactService(InMemoryContactRepository repository)
         contact.Name = name;
         return true;
     }
+
+    public bool DeleteContact(int id)
+        => repository.Delete(id);
 }
