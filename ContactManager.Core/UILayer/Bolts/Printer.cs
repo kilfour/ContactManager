@@ -2,7 +2,7 @@ namespace ContactManager.Core.UILayer.Bolts;
 
 public class Printer(IConsole console)
 {
-    public void Write(string text)
+    public void WriteMessage(string text)
     {
         console.WriteLine(text);
     }

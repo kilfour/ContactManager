@@ -3,11 +3,8 @@ using ContactManager.Core.UILayer.Bolts;
 
 namespace ContactManager.Core.UILayer;
 
-public class Menu(IConsole console, ContactService service)
+public class Menu(ContactService service, Prompter prompter, Printer printer)
 {
-    private readonly Prompter prompter = new(console);
-    private readonly Printer printer = new(console);
-
     public int Run()
     {
         var running = true;
@@ -20,15 +17,13 @@ public class Menu(IConsole console, ContactService service)
         return 0;
     }
 
-    private void ShowMenu()
-    {
+    private void ShowMenu() =>
         printer.WriteSection("Menu",
             [ "1. Contact Toevoegen"
             , "2. Contacten Tonen"
             , "3. Contact Bewerken"
             , "q. Exit"
             ]);
-    }
 
     private bool HandleMenuChoice(string choice)
     {
@@ -38,7 +33,7 @@ public class Menu(IConsole console, ContactService service)
             case "2": HandleShowContacts(); break;
             case "3": HandleUpdateContact(); break;
             case "q": return false;
-            default: printer.Write("Ongeldige optie."); break;
+            default: printer.WriteMessage("Ongeldige optie."); break;
         }
         return true;
     }
@@ -47,7 +42,7 @@ public class Menu(IConsole console, ContactService service)
     {
         var name = prompter.AskForTextOnNewLine("Voer een naam in: ");
         service.AddContact(name);
-        printer.Write($"Contact toegevoegd: {name}");
+        printer.WriteMessage($"Contact toegevoegd: {name}");
     }
 
     private void HandleUpdateContact()
