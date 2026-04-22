@@ -14,7 +14,8 @@ public class Menu(IConsole console, ContactService service)
         while (running)
         {
             ShowMenu();
-            running = HandleMenuChoice(console.ReadLine());
+            var choice = prompter.AskForText("Maak uw keuze: ");
+            running = HandleMenuChoice(choice);
         }
         return 0;
     }
@@ -27,7 +28,6 @@ public class Menu(IConsole console, ContactService service)
             , "3. Contact Bewerken"
             , "q. Exit"
             ]);
-        console.Write("Maak uw keuze:");
     }
 
     private bool HandleMenuChoice(string choice)
@@ -38,16 +38,16 @@ public class Menu(IConsole console, ContactService service)
             case "2": HandleShowContacts(); break;
             case "3": HandleUpdateContact(); break;
             case "q": return false;
-            default: console.WriteLine("Ongeldige optie."); break;
+            default: printer.Write("Ongeldige optie."); break;
         }
         return true;
     }
 
     private void HandleAddContact()
     {
-        var name = prompter.AskForText("Voer een naam in: ");
+        var name = prompter.AskForTextOnNewLine("Voer een naam in: ");
         service.AddContact(name);
-        console.WriteLine($"Contact toegevoegd: {name}");
+        printer.Write($"Contact toegevoegd: {name}");
     }
 
     private void HandleUpdateContact()
@@ -58,7 +58,7 @@ public class Menu(IConsole console, ContactService service)
 
     private void UpdateContactById(int id)
     {
-        var name = prompter.AskForText("Voer een naam in: ");
+        var name = prompter.AskForTextOnNewLine("Voer een naam in: ");
         printer.WriteIf(service.UpdateContact(id, name),
             $"Contact '{id}' bijgewerkt.",
             $"Contact '{id}' niet gevonden.");

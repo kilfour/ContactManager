@@ -2,7 +2,10 @@ namespace ContactManager.Core.UILayer.Bolts;
 
 public class Printer(IConsole console)
 {
-    const int Width = 30;
+    public void Write(string text)
+    {
+        console.WriteLine(text);
+    }
 
     public void WriteIf(bool condition, string ifTrue, string ifFalse)
     {
@@ -13,6 +16,8 @@ public class Printer(IConsole console)
         }
         console.WriteLine(ifFalse);
     }
+
+    const int Width = 30;
 
     public void WriteSection(string title, List<string> content)
     {

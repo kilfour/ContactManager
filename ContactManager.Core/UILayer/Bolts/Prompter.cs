@@ -2,9 +2,15 @@ namespace ContactManager.Core.UILayer.Bolts;
 
 public class Prompter(IConsole console)
 {
-    public string AskForText(string question)
+    public string AskForTextOnNewLine(string question)
     {
         console.WriteLine(question);
+        return console.ReadLine();
+    }
+
+    public string AskForText(string question)
+    {
+        console.Write(question);
         return console.ReadLine();
     }
 
@@ -20,4 +26,6 @@ public class Prompter(IConsole console)
         console.WriteLine(errorMessage);
         return false;
     }
+
+
 }
