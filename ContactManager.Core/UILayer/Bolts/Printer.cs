@@ -1,6 +1,6 @@
 namespace ContactManager.Core.UILayer.Bolts;
 
-public class Printer(IConsole console)
+public class Printer(IConsole console) : IPrinter
 {
     public void WriteMessage(string text)
     {

@@ -11,5 +11,5 @@ return
     new Menu(
         new ContactService(new FileBasedRepository(path)),
         new Prompter(console),
-        new Printer(console))
+        new SpectrePrinter()) // bit of a hack, tests assert on IConsole which is now not passed in
     .Run();

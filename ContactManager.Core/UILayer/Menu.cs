@@ -8,9 +8,9 @@ public class Menu
     private readonly MenuOption[] menuOptions;
     private readonly ContactService service;
     private readonly Prompter prompter;
-    private readonly Printer printer;
+    private readonly IPrinter printer;
 
-    public Menu(ContactService service, Prompter prompter, Printer printer)
+    public Menu(ContactService service, Prompter prompter, IPrinter printer)
     {
         this.service = service;
         this.prompter = prompter;
