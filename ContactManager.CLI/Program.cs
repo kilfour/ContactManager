@@ -1,5 +1,7 @@
 ﻿using ContactManager.CLI;
-using ContactManager.Core;
+using ContactManager.Core.DataLayer;
+using ContactManager.Core.ServiceLayer;
+using ContactManager.Core.UILayer;
 
 return
     new Menu(
