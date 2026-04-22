@@ -3,52 +3,65 @@ using ContactManager.Core.UILayer.Bolts;
 
 namespace ContactManager.Core.UILayer;
 
-public class Menu(ContactService service, Prompter prompter, Printer printer)
+public class Menu
 {
+    private readonly MenuOption[] menuOptions;
+    private readonly ContactService service;
+    private readonly Prompter prompter;
+    private readonly Printer printer;
+
+    public Menu(ContactService service, Prompter prompter, Printer printer)
+    {
+        this.service = service;
+        this.prompter = prompter;
+        this.printer = printer;
+        menuOptions =
+            [ new MenuOption("1","Contact Toevoegen", HandleAddContact)
+            , new MenuOption("2","Contacten Tonen",   HandleShowContacts)
+            , new MenuOption("3","Contact Bewerken",  HandleUpdateContact)
+            , new MenuOption("q","Exit", () => false)
+            ];
+    }
+
     public int Run()
     {
         var running = true;
         while (running)
         {
             ShowMenu();
-            var choice = prompter.AskForText("Maak uw keuze: ");
-            running = HandleMenuChoice(choice);
+            running = HandleMenuChoice();
         }
         return 0;
     }
 
     private void ShowMenu() =>
-        printer.WriteSection("Menu",
-            [ "1. Contact Toevoegen"
-            , "2. Contacten Tonen"
-            , "3. Contact Bewerken"
-            , "q. Exit"
-            ]);
+        printer.WriteSection("Menu", [.. menuOptions.Select(a => $"{a.Key}. {a.Label}")]);
 
-    private bool HandleMenuChoice(string choice)
+    private bool HandleMenuChoice()
     {
-        switch (choice)
+        var choice = prompter.AskForText("Maak uw keuze: ");
+        var option = menuOptions.FirstOrDefault(a => a.Key == choice);
+        if (option is null)
         {
-            case "1": HandleAddContact(); break;
-            case "2": HandleShowContacts(); break;
-            case "3": HandleUpdateContact(); break;
-            case "q": return false;
-            default: printer.WriteMessage("Ongeldige optie."); break;
+            printer.WriteMessage("Ongeldige optie.");
+            return true;
         }
-        return true;
+        return option.Handler();
     }
 
-    private void HandleAddContact()
+    private bool HandleAddContact()
     {
         var name = prompter.AskForTextOnNewLine("Voer een naam in: ");
         service.AddContact(name);
         printer.WriteMessage($"Contact toegevoegd: {name}");
+        return true;
     }
 
-    private void HandleUpdateContact()
+    private bool HandleUpdateContact()
     {
         if (prompter.AskForNumber("Voer een id in: ", out var id, "Ongeldige id."))
             UpdateContactById(id);
+        return true;
     }
 
     private void UpdateContactById(int id)
@@ -59,10 +72,11 @@ public class Menu(ContactService service, Prompter prompter, Printer printer)
             $"Contact '{id}' niet gevonden.");
     }
 
-    private void HandleShowContacts()
+    private bool HandleShowContacts()
     {
         var contactsOverview = service.GetContactsOverview();
         var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview;
         printer.WriteSection("Contacten", content);
+        return true;
     }
 }
