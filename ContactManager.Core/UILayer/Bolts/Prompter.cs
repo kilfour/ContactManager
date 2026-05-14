@@ -26,6 +26,4 @@ public class Prompter(IConsole console)
         console.WriteLine(errorMessage);
         return false;
     }
-
-
 }

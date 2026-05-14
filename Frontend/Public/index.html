@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Contact manager</h1>
+    </header>
+    <main>
+        <h2>Manage your contacts</h2>
+        <div class="navigationbuttons">
+            <button type="button" class="navbutton">Add contact</button>
+            <button type="button" class="navbutton">Manage contacts</button>
+            <button type="button" class="navbutton">Search contact</button>
+        </div>
+    </main>
+    <section id="addcontact" class="view">
+        <h2>Add contact</h2>
+        <div class="addcontact">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+            <label for="phonenumber">Phone number:</label>
+            <input type="tel" id="phonenumber" name="phonenumber">
+            <button type="submit" class="addbutton">
+                Add contact</button>
+        </div>
+    </section>
+    <section id="managecontact" class="view">
+        <h2>Manage contacts</h2>
+        <div class="contactlist">
+            <div class="contact">
+                <div class="contactinfo">
+                    <h3>Tom Wylin</h3>
+                    <p>✉️ tom@home.be</p>
+                    <p>📞 003298452132</p>
+                </div>
+                <div class="contactbuttons">
+                    <button title="Edit contact" type="button" class="iconbutton">
+                        ✏️
+                    </button>
+
+                    <button title="Remove contact" type="button" class="iconbutton">
+                        🗑️
+                    </button>
+                </div>
+            </div>
+            <div class="contact">
+                <div class="contactinfo">
+                    <h3>Mark</h3>
+                    <p>✉️ mark@campus.be</p>
+                    <p>📞 00325497321</p>
+                </div>
+                <div class="contactbuttons">
+                    <button title="Edit contact" type="button" class="iconbutton">
+                        ✏️
+                    </button>
+
+                    <button title="Remove contact" type="button" class="iconbutton">
+                        🗑️
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="removecontact" class="view">
+        <h2>Remove contact?</h2>
+        <div class="contact">
+            <div class="contactinfo">
+                <h3>Tom Wylin</h3>
+                <p>✉️ tom@home.be</p>
+                <p>📞 003298452132</p>
+            </div>
+        </div>
+        <div class="confirmbuttons">
+            <button class="yesbutton">
+                Yes
+            </button>
+            <button class="nobutton">
+                No
+            </button>
+        </div>
+    </section>
+    <section id="searchontact" class="view">
+        <h2>Search contacts</h2>
+        <div class="searchcontact">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+            <button type="submit" class="searchbutton">
+                Search contact</button>
+        </div>
+        <div class="contactlist">
+            <div class="contact">
+                <div class="contactinfo">
+                    <h3>Tom Wylin</h3>
+                    <p>✉️ tom@home.be</p>
+                    <p>📞 003298452132</p>
+                </div>
+                <div class="contactbuttons">
+                    <button title="Edit contact" type="button" class="iconbutton">
+                        ✏️
+                    </button>
+
+                    <button title="Remove contact" type="button" class="iconbutton">
+                        🗑️
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
