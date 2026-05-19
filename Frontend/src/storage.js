@@ -2,11 +2,12 @@ const storageKey = "contact-manager-contacts";
 
 let contacts = loadContacts();
 
-export function getAllContacts(filter) {
-    return contacts.filter(a =>
-        a.name.includes(filter) ||
-        a.email.includes(filter) ||
-        a.phone.includes(filter));
+export function getAllContacts(filter = '') {
+    const normalized = filter.toLowerCase();
+    return contacts.filter(contact =>
+        contact.name.toLowerCase().includes(normalized) ||
+        contact.email.toLowerCase().includes(normalized) ||
+        contact.phone.toLowerCase().includes(normalized));
 }
 
 export function createContact(contact) {

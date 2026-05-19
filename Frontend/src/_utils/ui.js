@@ -21,3 +21,7 @@ export function bindDialogForm(dialog, form, onSubmit, onClose) {
         onClose();
     });
 }
+
+export function notConfigured(module, name) {
+    throw new Error(`${name} was not configured in module ${module}.`);
+}
