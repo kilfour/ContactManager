@@ -13,89 +13,89 @@
 
 <body>
 
-    <main class="appBox">
+    <main class="app-box">
         <section class="toolbar">
             <h1>Contacten Lijst</h1>
 
-            <form class="searchForm" id="searchForm">
-                <label for="searchField">Find Contact</label>
-                <input type="text" id="searchField">
+            <form class="search-form">
+                <label for="search-field">Find Contact</label>
+                <input type="text" id="search-field">
             </form>
         </section>
 
-        <section id="contact-list" class="contactGrid"></section>
+        <section id="contact-list" class="contact-grid"></section>
     </main>
 
-    <dialog id="addContactDialog">
-        <form method="dialog" class="addContactForm" id="addContactForm">
+    <dialog id="add-contact-dialog">
+        <form method="dialog" class="contact-form">
 
-            <div class="formRow">
-                <div class="inputGroup">
-                    <label for="contactName">*Name:</label>
-                    <input type="text" name="name" placeholder="Jefke Vermeulen" required>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="add-name">*Name:</label>
+                    <input type="text" id="add-name" name="name" required>
                 </div>
             </div>
 
-            <div class="formRow">
-                <div class="inputGroup">
-                    <label for="contactEmail">Email:</label>
-                    <input type="email" name="email" placeholder="something@email.com">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="add-email">Email:</label>
+                    <input type="email" id="add-email" name="email">
                 </div>
 
             </div>
 
-            <div class="formRow">
-                <div class="inputGroup">
-                    <label for="contactPhone">Phone nr:</label>
-                    <input type="text" name="phone" placeholder="00 00 000 000">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="add-phone">Phone nr:</label>
+                    <input type="text" id="add-phone" name="phone" placeholder="00 00 000 000">
                 </div>
 
             </div>
 
             <p>*Mandatory field</p>
 
-            <button type="submit" class="addContactSubmit">
+            <button type="submit" class="add-contact-submit">
                 Add Contact
             </button>
 
         </form>
     </dialog>
 
-    <dialog id="inspectContactDialog">
-        <form method="dialog" class="addContactForm">
+    <dialog id="inspect-contact-dialog">
+        <form method="dialog" class="contact-form">
 
-            <div class="formRow">
-                <div class="inputGroup">
-                    <label>Name:</label>
-                    <input type="text" class="name" readonly>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="detail-name">Name:</label>
+                    <input type="text" id="detail-name" class="name" readonly>
                 </div>
             </div>
 
-            <div class="formRow">
-                <div class="inputGroup">
-                    <label>Email:</label>
-                    <input type="email" class="email" readonly>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="detail-email">Email:</label>
+                    <input type="email" id="detail-email" class="email" readonly>
                 </div>
             </div>
 
-            <div class="formRow">
-                <div class="inputGroup">
-                    <label>Phone nr:</label>
-                    <input type="text" class="phone" readonly>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="detail-phone">Phone nr:</label>
+                    <input type="text" id="detail-phone" class="phone" readonly>
                 </div>
             </div>
 
-            <div class="buttonRow">
+            <div class="button-row">
 
-                <button type="button" id="openDeleteDialogButton" class="ContactSubmit delete">
+                <button type="button" class="contact-submit delete">
                     Delete Contact
                 </button>
 
-                <button type="button" id="openEditDialogButton" class="ContactSubmit edit">
+                <button type="button" class="contact-submit edit">
                     Edit Contact
                 </button>
 
-                <button type="submit" class="ContactSubmit">
+                <button type="submit" class="contact-submit">
                     Return
                 </button>
 
@@ -105,53 +105,53 @@
     </dialog>
 
 
-    <dialog id="editContactDialog">
-        <form method="dialog" class="addContactForm" id="editContactForm">
-            <div class="formRow">
+    <dialog id="edit-contact-dialog">
+        <form method="dialog" class="contact-form">
+            <div class="form-row">
             </div>
-            <div class="formRow">
-                <div class="inputGroup">
-                    <label for="contactName">Name: </label>
-                    <input type="text" id="editContactName" class="name" name="name">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="edit-name">Name: </label>
+                    <input type="text" id="edit-name" class="name" name="name">
                 </div>
             </div>
 
-            <div class="formRow">
-                <div class="inputGroup">
-                    <label for="contactEmail">Email:</label>
-                    <input type="email" id="editContactEmail" class="email" name="email">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="edit-email">Email:</label>
+                    <input type="email" id="edit-email" class="email" name="email">
                 </div>
             </div>
 
-            <div class="formRow">
-                <div class="inputGroup">
-                    <label for="contactPhone">Phone nr:</label>
-                    <input type="text" id="editContactPhone" class="phone" name="phone">
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="edit-phone">Phone nr:</label>
+                    <input type="text" id="edit-phone" class="phone" name="phone">
                 </div>
             </div>
 
-            <button type="submit" class="saveContactSubmit">
+            <button type="submit" class="save-contact-submit">
                 Save Changes
             </button>
 
         </form>
     </dialog>
 
-    <dialog id="deleteContactDialog">
+    <dialog id="delete-contact-dialog">
 
-        <form method="dialog" class="DeleteContactForm">
+        <form method="dialog">
 
             <h1>
                 Are you certain you wish to delete this contact?
             </h1>
 
-            <div class="deletebuttonRow">
+            <div class="delete-button-row">
 
-                <button type="button" id="confirmDeleteContactButton" class="ContactSubmit confirm">
+                <button type="button" class="contact-submit confirm">
                     Yes, Delete Contact
                 </button>
 
-                <button type="submit" class="ContactSubmit">
+                <button type="submit" class="contact-submit">
                     No, Cancel deletion
                 </button>
 

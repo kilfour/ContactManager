@@ -4,7 +4,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.appBox {
+.app-box {
     border: 2px solid black;
     border-radius: 20px;
     padding: 30px;
@@ -21,18 +21,18 @@ body {
     margin: 0;
 }
 
-.searchForm {
+.search-form {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.searchForm input {
+.search-form input {
     height: 32px;
     width: 220px;
 }
 
-.contactGrid {
+.contact-grid {
     border: 2px solid black;
     border-radius: 20px;
     margin-top: 30px;
@@ -89,20 +89,20 @@ dialog {
     padding: 35px;
 }
 
-.addContactForm {
+.contact-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.formRow {
+.form-row {
     gap: 0;
     display: flex;
     align-items: center;
     gap: 80px;
 }
 
-.inputGroup {
+.input-group {
     display: flex;
     align-items: center;
     border: 2px solid black;
@@ -110,12 +110,12 @@ dialog {
     overflow: hidden;
 }
 
-.inputGroup label {
+.input-group label {
     padding: 12px;
     border-right: 2px solid black;
 }
 
-.inputGroup input {
+.input-group input {
 
     border: none;
     padding: 12px;
@@ -127,8 +127,8 @@ dialog {
 }
 
 
-.addContactSubmit,
-.saveContactSubmit {
+.add-contact-submit,
+.save-contact-submit {
     align-self: flex-end;
     padding: 16px 40px;
     border: 2px solid black;
@@ -136,14 +136,14 @@ dialog {
     background: white;
 }
 
-.buttonRow {
+.button-row {
     display: flex;
     justify-content: space-between;
     width: 100%;
     gap: 20px;
 }
 
-.deletebuttonRow {
+.delete-button-row {
 
     display: flex;
     align-self: center;
@@ -153,7 +153,7 @@ dialog {
 }
 
 
-.ContactSubmit {
+.contact-submit {
     align-self: flex-end;
     justify-content: space-evenly;
     padding: 16px 40px;

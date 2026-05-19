@@ -25,3 +25,11 @@ export function bindDialogForm(dialog, form, onSubmit, onClose) {
 export function notConfigured(module, name) {
     throw new Error(`${name} was not configured in module ${module}.`);
 }
+
+export function onInput(element, action) {
+    element.addEventListener("input", () => action(element.value));
+}
+
+export function onClick(element, action) {
+    element.addEventListener("click", () => action());
+}

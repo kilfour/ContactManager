@@ -1,4 +1,4 @@
-import { getByClass, notConfigured } from "./_utils/ui.js";
+import { getByClass, notConfigured, onClick } from "./_utils/ui.js";
 import { deleteContact } from "./storage.js";
 
 export function initializeDeleteContact(element) {
@@ -15,16 +15,16 @@ export function initializeDeleteContact(element) {
             contact = contactToShow;
             elements.dialog.showModal();
         },
-        onConfirmed: () => notConfigured('delete-contact', 'onConfirmed')
+        onDelete: () => notConfigured('delete-contact', 'onDelete')
     };
 
     function removeContact() {
         deleteContact(contact);
         elements.dialog.close();
-        component.onConfirmed();
+        component.onDelete();
     }
 
-    elements.confirmButton.addEventListener("click", () => removeContact());
+    onClick(elements.confirmButton, () => removeContact());
 
     return component;
 }

@@ -1,42 +1,44 @@
-import { html, htmlList } from './_utils/fabrication-facility.js';
-import { getAllContacts } from "./storage.js";
+import { html } from './_utils/fabrication-facility.js';
+import { notConfigured, onInput } from "./_utils/ui.js";
+import { getFilteredContacts } from "./storage.js";
 
-export function initializeContactList(element, search) {
+export function initializeContactList(container, search) {
 
     let searchFilter = '';
 
     const elements = {
-        container: element,
-        search: search,
+        container,
+        search,
         addButton: html('button', { onclick: () => component.onAddButtonClicked(), class: 'addButton' }, '+')
     };
 
     const component = {
         refresh() {
-            let contacts = getAllContacts(searchFilter);
-            let cards = contacts.map(
-                contact => html('div', { class: 'contactCard' },
-                    html('div', { class: 'cardHeader' },
-                        html('h2', contact.name),
-                        html('button', { onclick: () => component.onShowDetail(contact) }, '⚙')
-                    ),
-                    html('p', `e-mail: ${contact.email}`),
-                    html('p', `Phone nr: ${contact.phone}`)
-                ));
-            elements.container.innerHTML = '';
-            elements.container.append(...cards);
-            elements.container.append(elements.addButton);
+            const contacts = getFilteredContacts(searchFilter);
+            const children = contacts.map(contactCard);
+            elements.container.replaceChildren(...children, elements.addButton);
         },
         onShowDetail: () => notConfigured('contact-list', 'onShowDetail'),
         onAddButtonClicked: () => notConfigured('contact-list', 'onAddButtonClicked')
     };
 
+    function contactCard(contact) {
+        return html('div', { class: 'contactCard' },
+            html('div', { class: 'cardHeader' },
+                html('h2', contact.name),
+                html('button', { onclick: () => component.onShowDetail(contact) }, '⚙')
+            ),
+            html('p', `e-mail: ${contact.email}`),
+            html('p', `Phone nr: ${contact.phone}`)
+        );
+    }
+
+    onInput(elements.search, a => searchContacts(a));
+
     function searchContacts(filter) {
         searchFilter = filter;
         component.refresh();
     }
-
-    elements.search.addEventListener("input", () => searchContacts(elements.search.value.toLowerCase()));
 
     return component;
 }
