@@ -1,4 +1,4 @@
-import { notConfigured, getByClass, bindDialogForm } from "./_utils/ui.js";
+import { bindDialogForm, getByClass, notConfigured } from "./_utils/ui.js";
 import { updateContact } from "./storage.js";
 
 
@@ -22,14 +22,14 @@ export function initializeEditContact(element) {
             elements.phone.value = contact.phone;
             elements.dialog.showModal();
         },
-        onConfirmed: () => notConfigured('edit-contact', 'onConfirmed')
+        onUpdate: () => notConfigured('edit-contact', 'onUpdate')
     };
 
     bindDialogForm(
         elements.dialog,
         elements.form,
         a => { a.id = contact.id; contact = a; updateContact(a); },
-        () => component.onConfirmed(contact));
+        () => component.onUpdate(contact));
 
     return component;
 }

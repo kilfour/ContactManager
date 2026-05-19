@@ -2,7 +2,7 @@ const storageKey = "contact-manager-contacts";
 
 let contacts = loadContacts();
 
-export function getAllContacts(filter = '') {
+export function getFilteredContacts(filter = '') {
     const normalized = filter.toLowerCase();
     return contacts.filter(contact =>
         contact.name.toLowerCase().includes(normalized) ||
@@ -10,22 +10,26 @@ export function getAllContacts(filter = '') {
         contact.phone.toLowerCase().includes(normalized));
 }
 
+// CR
 export function createContact(contact) {
     contact.id = crypto.randomUUID();
     contacts = [...contacts, contact];
     saveContacts();
 }
 
+// U
 export function updateContact(contact) {
     contacts = contacts.map(a => a.id == contact.id ? contact : a);
     saveContacts();
 }
 
+// D
 export function deleteContact(contact) {
     contacts = contacts.filter(a => a.id !== contact.id);
     saveContacts();
 }
 
+// The private parts
 function loadContacts() {
     const json = localStorage.getItem(storageKey);
     if (json === null)

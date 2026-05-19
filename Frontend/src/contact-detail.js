@@ -1,4 +1,4 @@
-import { getByClass } from "./_utils/ui.js";
+import { getByClass, onClick } from "./_utils/ui.js";
 
 
 export function initializeContactDetail(element) {
@@ -34,8 +34,8 @@ export function initializeContactDetail(element) {
         onDeleteClicked: () => notConfigured('contact-detail', 'onDeleteClicked')
     };
 
-    elements.editButton.addEventListener("click", () => component.onEditClicked(contact));
-    elements.deleteButton.addEventListener("click", () => component.onDeleteClicked(contact));
+    onClick(elements.editButton, () => component.onEditClicked(contact));
+    onClick(elements.deleteButton, () => component.onDeleteClicked(contact));
 
     return component;
 }
