@@ -3,7 +3,6 @@ import { createContact } from "./storage.js";
 
 let component = {};
 let elements = {};
-let contact = {};
 
 export function initializeAddContact(element) {
     createComponent();
@@ -15,7 +14,7 @@ export function initializeAddContact(element) {
 function createComponent() {
     component = {
         showDialog: a => elements.dialog.showModal(a),
-        onUpdate: null
+        onCreate: null
     };
 }
 
