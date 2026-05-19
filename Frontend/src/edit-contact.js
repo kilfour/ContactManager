@@ -8,7 +8,7 @@ export function initializeEditContact(element) {
 
     const elements = {
         dialog: element,
-        form: getByClass(element, 'addContactForm'),
+        form: getByClass(element, 'contact-form'),
         name: getByClass(element, "name"),
         email: getByClass(element, "email"),
         phone: getByClass(element, "phone"),

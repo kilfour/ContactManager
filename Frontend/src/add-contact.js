@@ -5,7 +5,7 @@ export function initializeAddContact(element) {
 
     const elements = {
         dialog: element,
-        form: getByClass(element, 'addContactForm')
+        form: getByClass(element, 'contact-form')
     };
 
     const component = {
