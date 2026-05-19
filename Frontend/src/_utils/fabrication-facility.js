@@ -38,5 +38,3 @@ function appendChildren(node, children) {
         node.append(child instanceof Node ? child : document.createTextNode(child));
     }
 }
-
-export const __only_for_test = { applyAttributes };
