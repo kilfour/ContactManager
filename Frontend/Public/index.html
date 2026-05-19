@@ -1,118 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Contact Manager</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="../src/main.js" defer></script>
+    <title>Contact Manager</title>
 </head>
 
+
 <body>
-    <header>
-        <h1>Contact manager</h1>
-    </header>
-    <main>
-        <h2>Manage your contacts</h2>
-        <div class="navigationbuttons">
-            <button type="button" class="navbutton">Add contact</button>
-            <button type="button" class="navbutton">Manage contacts</button>
-            <button type="button" class="navbutton">Search contact</button>
-        </div>
+
+    <main class="appBox">
+        <section class="toolbar">
+            <h1>Contacten Lijst</h1>
+
+            <form class="searchForm" id="searchForm">
+                <label for="searchField">Find Contact</label>
+                <input type="text" id="searchField">
+            </form>
+        </section>
+
+        <section id="contact-list" class="contactGrid"></section>
     </main>
-    <section id="addcontact" class="view">
-        <h2>Add contact</h2>
-        <div class="addcontact">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email">
-            <label for="phonenumber">Phone number:</label>
-            <input type="tel" id="phonenumber" name="phonenumber">
-            <button type="submit" class="addbutton">
-                Add contact</button>
-        </div>
-    </section>
-    <section id="managecontact" class="view">
-        <h2>Manage contacts</h2>
-        <div class="contactlist">
-            <div class="contact">
-                <div class="contactinfo">
-                    <h3>Tom Wylin</h3>
-                    <p>✉️ tom@home.be</p>
-                    <p>📞 003298452132</p>
-                </div>
-                <div class="contactbuttons">
-                    <button title="Edit contact" type="button" class="iconbutton">
-                        ✏️
-                    </button>
 
-                    <button title="Remove contact" type="button" class="iconbutton">
-                        🗑️
-                    </button>
-                </div>
-            </div>
-            <div class="contact">
-                <div class="contactinfo">
-                    <h3>Mark</h3>
-                    <p>✉️ mark@campus.be</p>
-                    <p>📞 00325497321</p>
-                </div>
-                <div class="contactbuttons">
-                    <button title="Edit contact" type="button" class="iconbutton">
-                        ✏️
-                    </button>
+    <dialog id="addContactDialog">
+        <form method="dialog" class="addContactForm" id="addContactForm">
 
-                    <button title="Remove contact" type="button" class="iconbutton">
-                        🗑️
-                    </button>
+            <div class="formRow">
+                <div class="inputGroup">
+                    <label for="contactName">*Name:</label>
+                    <input type="text" name="name" placeholder="Jefke Vermeulen" required>
                 </div>
             </div>
-        </div>
-    </section>
-    <section id="removecontact" class="view">
-        <h2>Remove contact?</h2>
-        <div class="contact">
-            <div class="contactinfo">
-                <h3>Tom Wylin</h3>
-                <p>✉️ tom@home.be</p>
-                <p>📞 003298452132</p>
+
+            <div class="formRow">
+                <div class="inputGroup">
+                    <label for="contactEmail">Email:</label>
+                    <input type="email" name="email" placeholder="something@email.com">
+                </div>
+
             </div>
-        </div>
-        <div class="confirmbuttons">
-            <button class="yesbutton">
-                Yes
+
+            <div class="formRow">
+                <div class="inputGroup">
+                    <label for="contactPhone">Phone nr:</label>
+                    <input type="text" name="phone" placeholder="00 00 000 000">
+                </div>
+
+            </div>
+
+            <p>*Mandatory field</p>
+
+            <button type="submit" class="addContactSubmit">
+                Add Contact
             </button>
-            <button class="nobutton">
-                No
-            </button>
-        </div>
-    </section>
-    <section id="searchontact" class="view">
-        <h2>Search contacts</h2>
-        <div class="searchcontact">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name">
-            <button type="submit" class="searchbutton">
-                Search contact</button>
-        </div>
-        <div class="contactlist">
-            <div class="contact">
-                <div class="contactinfo">
-                    <h3>Tom Wylin</h3>
-                    <p>✉️ tom@home.be</p>
-                    <p>📞 003298452132</p>
-                </div>
-                <div class="contactbuttons">
-                    <button title="Edit contact" type="button" class="iconbutton">
-                        ✏️
-                    </button>
 
-                    <button title="Remove contact" type="button" class="iconbutton">
-                        🗑️
-                    </button>
+        </form>
+    </dialog>
+
+    <dialog id="inspectContactDialog">
+        <form method="dialog" class="addContactForm">
+
+            <div class="formRow">
+                <div class="inputGroup">
+                    <label>Name:</label>
+                    <input type="text" class="name" readonly>
                 </div>
             </div>
-        </div>
-    </section>
+
+            <div class="formRow">
+                <div class="inputGroup">
+                    <label>Email:</label>
+                    <input type="email" class="email" readonly>
+                </div>
+            </div>
+
+            <div class="formRow">
+                <div class="inputGroup">
+                    <label>Phone nr:</label>
+                    <input type="text" class="phone" readonly>
+                </div>
+            </div>
+
+            <div class="buttonRow">
+
+                <button type="button" id="openDeleteDialogButton" class="ContactSubmit delete">
+                    Delete Contact
+                </button>
+
+                <button type="button" id="openEditDialogButton" class="ContactSubmit edit">
+                    Edit Contact
+                </button>
+
+                <button type="submit" class="ContactSubmit">
+                    Return
+                </button>
+
+            </div>
+
+        </form>
+    </dialog>
+
+
+    <dialog id="editContactDialog">
+        <form method="dialog" class="addContactForm" id="editContactForm">
+            <div class="formRow">
+            </div>
+            <div class="formRow">
+                <div class="inputGroup">
+                    <label for="contactName">Name: </label>
+                    <input type="text" id="editContactName" class="name" name="name">
+                </div>
+            </div>
+
+            <div class="formRow">
+                <div class="inputGroup">
+                    <label for="contactEmail">Email:</label>
+                    <input type="email" id="editContactEmail" class="email" name="email">
+                </div>
+            </div>
+
+            <div class="formRow">
+                <div class="inputGroup">
+                    <label for="contactPhone">Phone nr:</label>
+                    <input type="text" id="editContactPhone" class="phone" name="phone">
+                </div>
+            </div>
+
+            <button type="submit" class="saveContactSubmit">
+                Save Changes
+            </button>
+
+        </form>
+    </dialog>
+
+    <dialog id="deleteContactDialog">
+
+        <form method="dialog" class="DeleteContactForm">
+
+            <h1>
+                Are you certain you wish to delete this contact?
+            </h1>
+
+            <div class="deletebuttonRow">
+
+                <button type="button" id="confirmDeleteContactButton" class="ContactSubmit confirm">
+                    Yes, Delete Contact
+                </button>
+
+                <button type="submit" class="ContactSubmit">
+                    No, Cancel deletion
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
 </body>
 
 </html>

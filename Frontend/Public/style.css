@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.appBox {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 25px;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolbar h1 {
+    margin: 0;
+}
+
+.searchForm {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.searchForm input {
+    height: 32px;
+    width: 220px;
+}
+
+.contactGrid {
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-top: 30px;
+    padding: 40px;
+    min-height: 400px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.contactCard {
+    border: 2px solid black;
+    border-radius: 20px;
+    width: 260px;
+    padding-bottom: 25px;
+}
+
+.cardHeader {
+    border-bottom: 2px solid black;
+    padding: 12px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardHeader h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.contactCard p {
+    margin-left: 25px;
+}
+
+.addButton {
+    width: 60px;
+    height: 70px;
+    font-size: 42px;
+    border: 2px solid black;
+    border-radius: 15px;
+    background: white;
+}
+
+
+
+
+dialog {
+    width: 750px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 35px;
+}
+
+.addContactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formRow {
+    gap: 0;
+    display: flex;
+    align-items: center;
+    gap: 80px;
+}
+
+.inputGroup {
+    display: flex;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.inputGroup label {
+    padding: 12px;
+    border-right: 2px solid black;
+}
+
+.inputGroup input {
+
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.errorMessage {
+    color: red;
+}
+
+
+.addContactSubmit,
+.saveContactSubmit {
+    align-self: flex-end;
+    padding: 16px 40px;
+    border: 2px solid black;
+    border-radius: 14px;
+    background: white;
+}
+
+.buttonRow {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.deletebuttonRow {
+
+    display: flex;
+    align-self: center;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 20px;
+}
+
+
+.ContactSubmit {
+    align-self: flex-end;
+    justify-content: space-evenly;
+    padding: 16px 40px;
+    border: 2px solid black;
+    border-radius: 14px;
+    background: white;
+}
+
+input {
+    text-align: center;
+}
+
+input:read-only {
+    background-color: #f0f0f0;
+    color: gray;
+}

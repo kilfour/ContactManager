@@ -1,4 +1,4 @@
-import { parseArguments } from "./parse-arguments";
+import { parseArguments } from "./parse-arguments.js";
 
 export function htmlList(tag, items, renderItem) {
     const container = document.createElement(tag);
