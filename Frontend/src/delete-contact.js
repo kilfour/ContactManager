@@ -24,7 +24,7 @@ export function initializeDeleteContact(element) {
         component.onDelete();
     }
 
-    onClick(elements.confirmButton, () => removeContact());
+    onClick(elements.confirmButton, removeContact);
 
     return component;
 }

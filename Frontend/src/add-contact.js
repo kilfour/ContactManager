@@ -17,7 +17,7 @@ export function initializeAddContact(element) {
         elements.dialog,
         elements.form,
         a => createContact(a),
-        () => component.onCreate());
+        component.onCreate);
 
     return component;
 }
