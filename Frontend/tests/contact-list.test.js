@@ -4,9 +4,10 @@ import { initializeContactList } from '../src/contact-list.js'
 function setup(contacts) {
     const container = document.createElement("div");
     const search = document.createElement("input");
-    const component = initializeContactList(container, search, a => contacts ?? []);
+    const component = initializeContactList(container, search, contacts ?? (a => []));
     return { container, search, component };
 }
+
 describe('Contact List:', () => {
 
     it('- Contains the add button.', () => {
@@ -27,7 +28,7 @@ describe('Contact List:', () => {
     });
 
     it('- Renders contacts as cards.', () => {
-        const sut = setup([{ name: "jos", email: "", phone: "" }])
+        const sut = setup(a => [{ name: "jos", email: "", phone: "" }])
         sut.component.refresh();
         expect(sut.container.children.length).toBe(2); // 1 card + add button
         const card = sut.container.children[0];
@@ -36,12 +37,22 @@ describe('Contact List:', () => {
 
     it('- Calls onShowDetail when contact detail button clicked.', () => {
         let contact = null;
-        const sut = setup([{ name: "jos", email: "", phone: "" }])
+        const sut = setup(a => [{ name: "jos", email: "", phone: "" }])
         sut.component.onShowDetail = a => contact = a;
         sut.component.refresh();
         expect(sut.container.children.length).toBe(2); // 1 card + add button
         const button = sut.container.children[0].querySelector("button");
         button.click();
         expect(contact.name).toBe('jos');
+    });
+
+    it('- Typing in the search input passes the value as argument to storage.', () => {
+        let filter = null;
+        const sut = setup(a => { filter = a; return [] });
+        sut.component.refresh();
+        expect(filter).toBe("");
+        sut.search.value = "looking";
+        sut.search.dispatchEvent(new Event("input", { bubbles: true }));
+        expect(filter).toBe("looking");
     });
 });
