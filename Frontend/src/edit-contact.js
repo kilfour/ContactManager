@@ -1,8 +1,7 @@
 import { bindDialogForm, getByClass, notConfigured } from "./_utils/ui.js";
-import { updateContact } from "./storage.js";
 
 
-export function initializeEditContact(element) {
+export function initializeEditContact(element, updateContact) {
 
     let contact = null;
 
@@ -28,7 +27,7 @@ export function initializeEditContact(element) {
     bindDialogForm(
         elements.dialog,
         elements.form,
-        a => { a.id = contact.id; contact = a; updateContact(a); },
+        a => { contact = { ...a, id: contact.id }; updateContact(contact); },
         () => component.onUpdate(contact));
 
     return component;
