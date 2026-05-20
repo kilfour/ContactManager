@@ -1,5 +1,5 @@
 import { getById } from "./_utils/ui.js";
-import { createContact, getFilteredContacts } from "./storage.js";
+import { createContact, deleteContact, getFilteredContacts } from "./storage.js";
 import { initializeContactDetail } from "./contact-detail.js";
 import { initializeContactList } from "./contact-list.js";
 import { initializeAddContact } from "./add-contact.js";
@@ -27,7 +27,7 @@ const contactList   /**/ = initializeContactList(elements.contactList, elements.
 const addContact    /**/ = initializeAddContact(elements.addContact, createContact);
 const contactDetail /**/ = initializeContactDetail(elements.contactDetail);
 const editContact   /**/ = initializeEditContact(elements.editContact);
-const deleteContact /**/ = initializeDeleteContact(elements.deleteContact);
+const removeContact /**/ = initializeDeleteContact(elements.deleteContact, deleteContact);
 // ----------------------------------------------------------------------------------------------
 
 
@@ -56,11 +56,11 @@ editContact.onUpdate = a => { contactList.refresh(); contactDetail.refresh(a); }
 // ---
 // When clicking on the delete button in the detail, show the delete dialog.
 // ▼
-contactDetail.onDeleteClicked = deleteContact.showDialog;
+contactDetail.onDeleteClicked = removeContact.showDialog;
 // ---
 // When a contact is succesfully deleted close the detail dialog and refresh the list.
 // ▼
-deleteContact.onDelete = () => { contactDetail.hideDialog(); contactList.refresh(); }
+removeContact.onDelete = () => { contactDetail.hideDialog(); contactList.refresh(); }
 // ----------------------------------------------------------------------------------------------
 
 

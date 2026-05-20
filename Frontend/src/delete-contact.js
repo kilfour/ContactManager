@@ -1,7 +1,6 @@
 import { getByClass, notConfigured, onClick } from "./_utils/ui.js";
-import { deleteContact } from "./storage.js";
 
-export function initializeDeleteContact(element) {
+export function initializeDeleteContact(element, deleteContact) {
 
     let contact = null;
 

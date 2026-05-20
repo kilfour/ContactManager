@@ -1,9 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
+import { html } from '../src/_utils/fabrication-facility.js';
 import { initializeContactList } from '../src/contact-list.js'
 
 function setup(contacts) {
-    const container = document.createElement("div");
-    const search = document.createElement("input");
+    const container = html("div");
+    const search = html("input");
     const component = initializeContactList(container, search, contacts ?? (a => []));
     return { container, search, component };
 }
