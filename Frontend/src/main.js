@@ -28,9 +28,8 @@ const contactList   /**/ = initializeContactList(elements.contactList, elements.
 const addContact    /**/ = initializeAddContact(elements.addContact, storage.createContact);
 const contactDetail /**/ = initializeContactDetail(elements.contactDetail);
 const editContact   /**/ = initializeEditContact(elements.editContact, storage.updateContact);
-const removeContact /**/ = initializeDeleteContact(elements.deleteContact, storage.deleteContact);
+const deleteContact /**/ = initializeDeleteContact(elements.deleteContact, storage.deleteContact);
 // ----------------------------------------------------------------------------------------------
-
 
 // ----------------------------------------------------------------------------------------------
 // Link'm all up
@@ -57,15 +56,38 @@ editContact.onUpdate = a => { contactList.refresh(); contactDetail.refresh(a); }
 // ---
 // When clicking on the delete button in the detail, show the delete dialog.
 // ▼
-contactDetail.onDeleteClicked = removeContact.showDialog;
+contactDetail.onDeleteClicked = deleteContact.showDialog;
 // ---
 // When a contact is succesfully deleted close the detail dialog and refresh the list.
 // ▼
-removeContact.onDelete = () => { contactDetail.hideDialog(); contactList.refresh(); }
+deleteContact.onDelete = () => { contactDetail.hideDialog(); contactList.refresh(); }
 // ----------------------------------------------------------------------------------------------
-
 
 // ----------------------------------------------------------------------------------------------
 // Start the Engines
 contactList.refresh();
 // ----------------------------------------------------------------------------------------------
+
+
+// ----------------------------------------------------------------------------------------------
+// Link'm all up, in a guilty pleasure sort of way
+// ---
+// import { wire } from "./_utils/wiring.js";
+// ---
+// wire(contactList)
+//     .from(a => a.onAddButtonClicked).to(addContact.showDialog)
+//     .from(a => a.onShowDetail).to(contactDetail.showDialog);
+// wire(contactDetail)
+//     .from(a => a.onEditClicked).to(editContact.showDialog)
+//     .from(a => a.onDeleteClicked).to(deleteContact.showDialog);
+// wire(addContact)
+//     .from(a => a.onCreate).to(contactList.refresh);
+// wire(editContact)
+//     .from(a => a.onUpdate).to(a => { contactList.refresh(); contactDetail.refresh(a); });
+// wire(deleteContact)
+//     .from(a => a.onDelete).to(() => { contactDetail.hideDialog(); contactList.refresh(); });
+// ----------------------------------------------------------------------------------------------
+
+
+
+
