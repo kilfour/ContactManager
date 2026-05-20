@@ -38,7 +38,6 @@ describe('Edit Contact:', () => {
         sut.phone.value = '666';
         sut.form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
         expect(data.id).toBe(42);
-        console.log(data);
         expect(data.name).toBe('long neck');
         expect(data.email).toBe('giraffe@savanna.com');
         expect(data.phone).toBe('666');
