@@ -1,7 +1,7 @@
 import { notConfigured, getByClass, bindDialogForm } from "./_utils/ui.js";
-import { createContact } from "./storage.js";
 
-export function initializeAddContact(element) {
+
+export function initializeAddContact(element, createContact) {
 
     const elements = {
         dialog: element,
@@ -17,7 +17,7 @@ export function initializeAddContact(element) {
         elements.dialog,
         elements.form,
         a => createContact(a),
-        component.onCreate);
+        () => component.onCreate());
 
     return component;
 }
