@@ -1,24 +1,51 @@
+:root {
+    --bg: #f6f7fb;
+    --surface: #ffffff;
+    --surface-muted: #f1f3f7;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #d8dee9;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --danger: #dc2626;
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    padding: 32px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
 }
 
 .app-box {
-    border: 2px solid black;
-    border-radius: 20px;
-    padding: 30px;
-    margin-top: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
 }
 
 .toolbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
 .toolbar h1 {
     margin: 0;
+    font-size: 32px;
+    letter-spacing: -0.04em;
 }
 
 .search-form {
@@ -28,65 +55,101 @@ body {
 }
 
 .search-form input {
-    height: 32px;
-    width: 220px;
+    width: 260px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 15px;
+    background: var(--surface-muted);
 }
 
 .contact-grid {
-    border: 2px solid black;
-    border-radius: 20px;
-    margin-top: 30px;
-    padding: 40px;
+    margin-top: 32px;
+    padding: 24px;
     min-height: 400px;
 
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+
+    background: var(--surface-muted);
+    border-radius: 22px;
+
+    align-items: start;
 }
 
 .contactCard {
-    border: 2px solid black;
-    border-radius: 20px;
-    width: 260px;
-    padding-bottom: 25px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-.cardHeader {
-    border-bottom: 2px solid black;
-    padding: 12px;
-
+.card-header {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
 }
 
-.cardHeader h2 {
+.card-header h2 {
     margin: 0;
     font-size: 18px;
 }
 
 .contactCard p {
-    margin-left: 25px;
+    margin: 14px 18px;
+    color: var(--muted);
 }
 
-.addButton {
-    width: 60px;
-    height: 70px;
-    font-size: 42px;
-    border: 2px solid black;
-    border-radius: 15px;
-    background: white;
+button,
+.contact-submit,
+.add-contact-submit,
+.save-contact-submit {
+    cursor: pointer;
+    border: none;
+    border-radius: 12px;
+    background: var(--accent);
+    color: white;
+    font-weight: 600;
+    transition: 0.15s ease;
 }
 
+button:hover,
+.contact-submit:hover,
+.add-contact-submit:hover,
+.save-contact-submit:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
 
+.add-button {
+    width: 56px;
+    height: 56px;
+    font-size: 32px;
+    line-height: 1;
+    border-radius: 50%;
+}
 
+.edit-button {
+    padding-bottom: 2px;
+}
 
 dialog {
-    width: 750px;
-    border: 2px solid black;
-    border-radius: 20px;
-    padding: 35px;
+    width: min(750px, calc(100vw - 32px));
+    border: none;
+    border-radius: 24px;
+    padding: 32px;
+    background: var(--surface);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+}
+
+dialog::backdrop {
+    background: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
 }
 
 .contact-form {
@@ -96,77 +159,67 @@ dialog {
 }
 
 .form-row {
-    gap: 0;
     display: flex;
     align-items: center;
-    gap: 80px;
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
 .input-group {
+    flex: 1;
+    min-width: 240px;
+
     display: flex;
     align-items: center;
-    border: 2px solid black;
-    border-radius: 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 14px;
     overflow: hidden;
+    background: var(--surface);
 }
 
 .input-group label {
-    padding: 12px;
-    border-right: 2px solid black;
+    min-width: 110px;
+    padding: 12px 14px;
+    color: var(--muted);
+    background: var(--surface-muted);
+    border-right: 1px solid var(--border);
 }
 
 .input-group input {
-
+    width: 100%;
     border: none;
-    padding: 12px;
+    padding: 12px 14px;
     font-size: 16px;
+    text-align: left;
+    outline: none;
+}
+
+.input-group input:focus {
+    box-shadow: inset 0 0 0 2px var(--accent);
 }
 
 .errorMessage {
-    color: red;
+    color: var(--danger);
+    font-size: 14px;
+    font-weight: 600;
 }
 
+.button-row,
+.delete-button-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
 
+.contact-submit,
 .add-contact-submit,
 .save-contact-submit {
-    align-self: flex-end;
-    padding: 16px 40px;
-    border: 2px solid black;
-    border-radius: 14px;
-    background: white;
-}
-
-.button-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    gap: 20px;
-}
-
-.delete-button-row {
-
-    display: flex;
-    align-self: center;
-    justify-content: space-evenly;
-    width: 100%;
-    gap: 20px;
-}
-
-
-.contact-submit {
-    align-self: flex-end;
-    justify-content: space-evenly;
-    padding: 16px 40px;
-    border: 2px solid black;
-    border-radius: 14px;
-    background: white;
-}
-
-input {
-    text-align: center;
+    padding: 14px 28px;
 }
 
 input:read-only {
-    background-color: #f0f0f0;
-    color: gray;
+    background: var(--surface-muted);
+    color: var(--muted);
 }

@@ -1,4 +1,4 @@
-import { getByClass, onClick } from "./_utils/ui.js";
+import { getByName, onClick } from "./_utils/ui.js";
 
 
 export function initializeContactDetail(element) {
@@ -7,11 +7,11 @@ export function initializeContactDetail(element) {
 
     const elements = {
         dialog: element,
-        name: getByClass(element, "name"),
-        email: getByClass(element, "email"),
-        phone: getByClass(element, "phone"),
-        editButton: getByClass(element, "edit"),
-        deleteButton: getByClass(element, "delete")
+        name: getByName(element, "name"),
+        email: getByName(element, "email"),
+        phone: getByName(element, "phone"),
+        editButton: getByName(element, "edit"),
+        deleteButton: getByName(element, "delete")
     };
 
     function refresh(contactToShow) {

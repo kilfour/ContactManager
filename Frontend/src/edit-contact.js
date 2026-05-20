@@ -1,4 +1,4 @@
-import { bindDialogForm, getByClass, notConfigured } from "./_utils/ui.js";
+import { bindDialogForm, getByClass, getByName, notConfigured } from "./_utils/ui.js";
 
 
 export function initializeEditContact(element, updateContact) {
@@ -8,9 +8,9 @@ export function initializeEditContact(element, updateContact) {
     const elements = {
         dialog: element,
         form: getByClass(element, 'contact-form'),
-        name: getByClass(element, "name"),
-        email: getByClass(element, "email"),
-        phone: getByClass(element, "phone"),
+        name: getByName(element, "name"),
+        email: getByName(element, "email"),
+        phone: getByName(element, "phone"),
     };
 
     const component = {

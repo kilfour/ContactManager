@@ -12,6 +12,13 @@ export function getByClass(container, className) {
     return element;
 }
 
+export function getByName(container, name) {
+    const element = container.querySelector(`[name='${name}']`);
+    if (element === null)
+        throw new Error(`Could not find element with attribute name of '${name}'.`);
+    return element;
+}
+
 export function bindDialogForm(dialog, form, onSubmit, onClose) {
     form.addEventListener("submit", function (event) {
         event.preventDefault();

@@ -8,11 +8,11 @@ const contactFred = { name: 'fred', email: 'fred@fred.com', phone: '6789' };
 
 function setup(contact) {
     setupDialog();
-    const name = html('input', { class: 'name' });
-    const email = html('input', { class: 'email' });
-    const phone = html('input', { class: 'phone' });
-    const editButton = html('button', { class: 'edit' });
-    const deleteButton = html('button', { class: 'delete' });
+    const name = html('input', { name: 'name' });
+    const email = html('input', { name: 'email' });
+    const phone = html('input', { name: 'phone' });
+    const editButton = html('button', { name: 'edit' });
+    const deleteButton = html('button', { name: 'delete' });
     const container = html('dialog', name, email, phone, editButton, deleteButton);
     const component = initializeContactDetail(container);
     component.onEditClicked = () => { };

@@ -5,7 +5,7 @@ import { initializeDeleteContact } from '../src/delete-contact.js'
 
 function setup(deleteContact) {
     setupDialog();
-    const button = html('button', { class: 'confirm' })
+    const button = html('button', { name: 'confirm' })
     const container = html('dialog', button);
     const component = initializeDeleteContact(container, deleteContact ?? (a => { }));
     component.onDelete = () => { };

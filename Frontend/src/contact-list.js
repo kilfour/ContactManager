@@ -9,7 +9,7 @@ export function initializeContactList(container, search, getFilteredContacts) {
     const elements = {
         container,
         search,
-        addButton: html('button', { onclick: () => component.onAddButtonClicked(), class: 'addButton' }, '+')
+        addButton: html('button', { onclick: () => component.onAddButtonClicked(), class: 'add-button' }, '+')
     };
 
     const component = {
@@ -24,9 +24,9 @@ export function initializeContactList(container, search, getFilteredContacts) {
 
     function contactCard(contact) {
         return html('div', { class: 'contactCard' },
-            html('div', { class: 'cardHeader' },
+            html('div', { class: 'card-header' },
                 html('h2', contact.name),
-                html('button', { onclick: () => component.onShowDetail(contact) }, '⚙')
+                html('button', { onclick: () => component.onShowDetail(contact), class: 'edit-button' }, '⚙')
             ),
             html('p', `e-mail: ${contact.email}`),
             html('p', `Phone nr: ${contact.phone}`)

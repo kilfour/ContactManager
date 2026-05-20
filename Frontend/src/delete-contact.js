@@ -1,4 +1,4 @@
-import { getByClass, notConfigured, onClick } from "./_utils/ui.js";
+import { getByName, notConfigured, onClick } from "./_utils/ui.js";
 
 export function initializeDeleteContact(element, deleteContact) {
 
@@ -6,7 +6,7 @@ export function initializeDeleteContact(element, deleteContact) {
 
     const elements = {
         dialog: element,
-        confirmButton: getByClass(element, 'confirm')
+        confirmButton: getByName(element, 'confirm')
     };
 
     const component = {

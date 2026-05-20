@@ -8,9 +8,9 @@ const contactJos = { id: 42, name: 'jos', email: 'jos@jos.com', phone: '12345' }
 
 function setup(updateContact) {
     setupDialog();
-    const name = html('input', { class: 'name', name: 'name' });
-    const email = html('input', { class: 'email', name: 'email' });
-    const phone = html('input', { class: 'phone', name: 'phone' });
+    const name = html('input', { name: 'name' });
+    const email = html('input', { name: 'email' });
+    const phone = html('input', { name: 'phone' });
     const form = html('form', { class: 'contact-form' }, name, email, phone);
     const container = html('dialog', form);
     const component = initializeEditContact(container, updateContact ?? (a => { }));

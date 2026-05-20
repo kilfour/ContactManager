@@ -33,7 +33,7 @@ describe('Contact List:', () => {
         sut.component.refresh();
         expect(sut.container.children.length).toBe(2); // 1 card + add button
         const card = sut.container.children[0];
-        expect(card.innerHTML).toBe('<div class="cardHeader"><h2>jos</h2><button>⚙</button></div><p>e-mail: </p><p>Phone nr: </p>');
+        expect(card.innerHTML).toBe('<div class="card-header"><h2>jos</h2><button class="edit-button">⚙</button></div><p>e-mail: </p><p>Phone nr: </p>');
     });
 
     it('- Calls onShowDetail when contact detail button clicked.', () => {
