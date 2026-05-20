@@ -1,8 +1,8 @@
 import { html } from './_utils/fabrication-facility.js';
 import { notConfigured, onInput } from "./_utils/ui.js";
-import { getFilteredContacts } from "./storage.js";
 
-export function initializeContactList(container, search) {
+
+export function initializeContactList(container, search, getFilteredContacts) {
 
     let searchFilter = '';
 
