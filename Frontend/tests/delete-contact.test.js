@@ -23,7 +23,7 @@ describe('Delete Contact:', () => {
     it('- Clicking the confirm button calls storage.', () => {
         let actual = null;
         const sut = setup(a => actual = a)
-        const contact = { name: "jos" }
+        const contact = { name: 'jos' }
         sut.component.showDialog(contact);
         sut.button.click();
         expect(actual).toBe(contact);

@@ -3,8 +3,8 @@ import { html } from '../src/_utils/fabrication-facility.js';
 import { initializeContactList } from '../src/contact-list.js'
 
 function setup(contacts) {
-    const container = html("div");
-    const search = html("input");
+    const container = html('div');
+    const search = html('input');
     const component = initializeContactList(container, search, contacts ?? (a => []));
     return { container, search, component };
 }
@@ -29,7 +29,7 @@ describe('Contact List:', () => {
     });
 
     it('- Renders contacts as cards.', () => {
-        const sut = setup(a => [{ name: "jos", email: "", phone: "" }])
+        const sut = setup(a => [{ name: 'jos', email: '', phone: '' }])
         sut.component.refresh();
         expect(sut.container.children.length).toBe(2); // 1 card + add button
         const card = sut.container.children[0];
@@ -38,11 +38,11 @@ describe('Contact List:', () => {
 
     it('- Calls onShowDetail when contact detail button clicked.', () => {
         let contact = null;
-        const sut = setup(a => [{ name: "jos", email: "", phone: "" }])
+        const sut = setup(a => [{ name: 'jos', email: '', phone: '' }])
         sut.component.onShowDetail = a => contact = a;
         sut.component.refresh();
         expect(sut.container.children.length).toBe(2); // 1 card + add button
-        const button = sut.container.children[0].querySelector("button");
+        const button = sut.container.children[0].querySelector('button');
         button.click();
         expect(contact.name).toBe('jos');
     });
@@ -51,9 +51,9 @@ describe('Contact List:', () => {
         let filter = null;
         const sut = setup(a => { filter = a; return [] });
         sut.component.refresh();
-        expect(filter).toBe("");
-        sut.search.value = "looking";
-        sut.search.dispatchEvent(new Event("input", { bubbles: true }));
-        expect(filter).toBe("looking");
+        expect(filter).toBe('');
+        sut.search.value = 'looking';
+        sut.search.dispatchEvent(new Event('input', { bubbles: true }));
+        expect(filter).toBe('looking');
     });
 });
