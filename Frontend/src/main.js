@@ -1,5 +1,5 @@
 import { getById } from "./_utils/ui.js";
-import { createContact, deleteContact, getFilteredContacts, updateContact } from "./storage.js";
+import { initializeStorage } from "./storage.js";
 import { initializeContactDetail } from "./contact-detail.js";
 import { initializeContactList } from "./contact-list.js";
 import { initializeAddContact } from "./add-contact.js";
@@ -23,11 +23,12 @@ const elements =
 // ----------------------------------------------------------------------------------------------
 // Create Some Components
 // ---
-const contactList   /**/ = initializeContactList(elements.contactList, elements.search, getFilteredContacts);
-const addContact    /**/ = initializeAddContact(elements.addContact, createContact);
+const storage       /**/ = initializeStorage();
+const contactList   /**/ = initializeContactList(elements.contactList, elements.search, storage.getFilteredContacts);
+const addContact    /**/ = initializeAddContact(elements.addContact, storage.createContact);
 const contactDetail /**/ = initializeContactDetail(elements.contactDetail);
-const editContact   /**/ = initializeEditContact(elements.editContact, updateContact);
-const removeContact /**/ = initializeDeleteContact(elements.deleteContact, deleteContact);
+const editContact   /**/ = initializeEditContact(elements.editContact, storage.updateContact);
+const removeContact /**/ = initializeDeleteContact(elements.deleteContact, storage.deleteContact);
 // ----------------------------------------------------------------------------------------------
 
 

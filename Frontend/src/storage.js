@@ -1,51 +1,47 @@
-const storageKey = "contact-manager-contacts";
+export const StorageKey = "contact-manager-contacts";
 
-let contacts = loadContacts();
-
-export function getFilteredContacts(filter = '') {
-    const normalized = filter.toLowerCase();
-    return contacts.filter(contact =>
-        contact.name.toLowerCase().includes(normalized) ||
-        contact.email.toLowerCase().includes(normalized) ||
-        contact.phone.toLowerCase().includes(normalized));
-}
-
-// CR
-export function createContact(contact) {
-    contact.id = crypto.randomUUID();
-    contacts = [...contacts, contact];
-    saveContacts();
-}
-
-// U
-export function updateContact(contact) {
-    contacts = contacts.map(a => a.id == contact.id ? contact : a);
-    saveContacts();
-}
-
-// D
-export function deleteContact(contact) {
-    contacts = contacts.filter(a => a.id !== contact.id);
-    saveContacts();
-}
-
-// The private parts
-function loadContacts() {
-    const json = localStorage.getItem(storageKey);
-    if (json === null)
-        return [];
-
-    try {
-        const contacts = JSON.parse(json);
-        return Array.isArray(contacts) ? contacts : [];
+export function initializeStorage() {
+    let contacts = loadContacts();
+    return {
+        getFilteredContacts(filter = '') {
+            const normalized = filter.toLowerCase();
+            return contacts.filter(contact =>
+                contact.name.toLowerCase().includes(normalized))
+        },
+        createContact(contact) {
+            contact.id = crypto.randomUUID();
+            contacts = [...contacts, contact];
+            saveContacts();
+        },
+        updateContact(contact) {
+            contacts = contacts.map(a => a.id == contact.id ? contact : a);
+            saveContacts();
+        },
+        deleteContact(contact) {
+            contacts = contacts.filter(a => a.id !== contact.id);
+            saveContacts();
+        }
     }
-    catch {
-        return [];
+
+    function loadContacts() {
+        const json = localStorage.getItem(StorageKey);
+        if (json === null)
+            return [];
+
+        try {
+            const contacts = JSON.parse(json);
+            return Array.isArray(contacts) ? contacts : [];
+        }
+        catch {
+            return [];
+        }
+    }
+
+    function saveContacts() {
+        localStorage.setItem(StorageKey, JSON.stringify(contacts));
     }
 }
 
-function saveContacts() {
-    localStorage.setItem(storageKey, JSON.stringify(contacts));
-}
+
 
 
