@@ -22,8 +22,8 @@ export function initializeContactList(container, search, getFilteredContacts) {
         onAddButtonClicked: () => notConfigured('contact-list', 'onAddButtonClicked')
     };
 
-    function contactCard(contact) {
-        return html('div', { class: 'contactCard' },
+    const contactCard = (contact) =>
+        html('div', { class: 'contactCard' },
             html('div', { class: 'card-header' },
                 html('h2', contact.name),
                 html('button', { onclick: () => component.onShowDetail(contact), class: 'edit-button' }, '⚙')
@@ -31,7 +31,7 @@ export function initializeContactList(container, search, getFilteredContacts) {
             html('p', `e-mail: ${contact.email}`),
             html('p', `Phone nr: ${contact.phone}`)
         );
-    }
+
 
     onInput(elements.search, a => searchContacts(a));
 
