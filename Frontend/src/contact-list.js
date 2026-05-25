@@ -32,7 +32,6 @@ export function initializeContactList(container, search, getFilteredContacts) {
             html('p', `Phone nr: ${contact.phone}`)
         );
 
-
     onInput(elements.search, a => searchContacts(a));
 
     function searchContacts(filter) {

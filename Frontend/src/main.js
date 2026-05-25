@@ -1,4 +1,3 @@
-import { getById } from "./_utils/ui.js";
 import { initializeStorage } from "./storage.js";
 import { initializeContactDetail } from "./contact-detail.js";
 import { initializeContactList } from "./contact-list.js";
@@ -89,5 +88,9 @@ contactList.refresh();
 // ----------------------------------------------------------------------------------------------
 
 
-
-
+function getById(id) {
+    const element = document.getElementById(id);
+    if (element === null)
+        throw new Error(`Could not find element with id '${id}'.`);
+    return element;
+}
