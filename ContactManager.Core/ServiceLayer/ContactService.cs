@@ -3,9 +3,23 @@ using ContactManager.Core.Domain;
 
 namespace ContactManager.Core.ServiceLayer;
 
-public class ContactService(IContactRepository repository)
+public interface IContactService
 {
-    public void AddContact(string naam) => repository.Add(new Contact(naam));
+    CreateContactResponse AddContact(CreateContactRequest createContactRequest);
+    // bool DeleteContact(int id);
+    // List<string> GetContactsOverview();
+    // List<string> Search(string search);
+    // bool UpdateContact(int id, string name);
+}
+
+public class ContactService(IContactRepository repository) : IContactService
+{
+    public CreateContactResponse AddContact(CreateContactRequest createContactRequest)
+    {
+        var contact = new Contact(createContactRequest.Name);
+        repository.Add(contact);
+        return new CreateContactResponse { Id = contact.Id, Name = contact.Name };
+    }
 
     public List<string> GetContactsOverview()
     {

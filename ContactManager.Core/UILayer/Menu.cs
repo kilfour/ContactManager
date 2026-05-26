@@ -54,7 +54,7 @@ public class Menu
     private bool HandleAddContact()
     {
         var name = prompter.AskForTextOnNewLine("Voer een naam in: ");
-        service.AddContact(name);
+        service.AddContact(new CreateContactRequest { Name = name });
         printer.WriteMessage($"Contact toegevoegd: {name}");
         return true;
     }

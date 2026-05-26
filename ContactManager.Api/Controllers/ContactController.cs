@@ -1,0 +1,36 @@
+using ContactManager.Core.ServiceLayer;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ContactManager.Api.Controllers;
+
+[ApiController]
+[Route("api/contacts")]
+public class ContactsController(ContactService service) : ControllerBase
+{
+    [HttpPost]
+    public ActionResult<CreateContactResponse> Create(CreateContactRequest request)
+    {
+        var contact = service.AddContact(request);
+        return Created($"/api/contacts/{contact.Id}", contact);
+    }
+
+    // [HttpGet]
+    // public ActionResult<List<ContactDto>> GetAll()
+    // {
+    //     return Ok(service.GetAll());
+    // }
+
+    // [HttpGet("search")]
+    // public ActionResult<List<ContactDto>> Search([FromQuery] string name)
+    // {
+    //     return Ok(service.SearchByName(name));
+    // }
+
+    // [HttpDelete("{id}")]
+    // public IActionResult Delete(Guid id)
+    // {
+    //     service.Delete(id);
+    //     return NoContent();
+    // }
+}
+

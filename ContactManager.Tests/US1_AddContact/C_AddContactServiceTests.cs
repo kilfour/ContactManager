@@ -1,3 +1,5 @@
+using ContactManager.Core.ServiceLayer;
+
 namespace ContactManager.Tests.US1_AddContact;
 
 public class C_AddContactServiceTests : BaseServiceTests
@@ -5,7 +7,7 @@ public class C_AddContactServiceTests : BaseServiceTests
     [Fact]
     public void AddContact_ContactAdded()
     {
-        service.AddContact("Elvis");
+        service.AddContact(new CreateContactRequest { Name = "Elvis" });
         var contact = repository.GetAll()[0];
         Assert.Equal(1, contact.Id);
         Assert.Contains("Elvis", contact.Name);
