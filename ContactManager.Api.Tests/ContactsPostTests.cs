@@ -26,7 +26,7 @@ public class ContactsPostTests
         Assert.Equal("Ada Lovelace", created.Name);
 
         var contacts = await client
-            .GetFromJsonAsync<List<GetAllContactResponse>>("/api/contacts");
+            .GetFromJsonAsync<List<SearchContactResponse>>("/api/contacts");
 
         Assert.Contains(
             contacts!,

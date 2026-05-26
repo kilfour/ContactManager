@@ -3,17 +3,17 @@ using ContactManager.Core.Domain;
 
 namespace ContactManager.Core.ServiceLayer;
 
-public interface IContactService
-{
-    CreateContactResponse AddContact(CreateContactRequest createContactRequest);
-    List<GetAllContactResponse> GetAll();
-    // bool DeleteContact(int id);
-    // List<string> GetContactsOverview();
-    // List<string> Search(string search);
-    // bool UpdateContact(int id, string name);
-}
+// public interface IContactService
+// {
+//     CreateContactResponse AddContact(CreateContactRequest createContactRequest);
+//     List<GetAllContactResponse> GetAll();
+//     // bool DeleteContact(int id);
+//     // List<string> GetContactsOverview();
+//     // List<string> Search(string search);
+//     bool UpdateContact(int id, UpdateContactRequest request);
+// }
 
-public class ContactService(IContactRepository repository) : IContactService
+public class ContactService(IContactRepository repository)
 {
     public CreateContactResponse AddContact(CreateContactRequest createContactRequest)
     {
@@ -22,21 +22,14 @@ public class ContactService(IContactRepository repository) : IContactService
         return new CreateContactResponse { Id = contact.Id, Name = contact.Name };
     }
 
-    public List<string> GetContactsOverview()
-    {
-        var result = new List<string>();
-        foreach (var contact in repository.GetAll())
-        {
-            result.Add(FormatContact(contact));
-        }
-        return result;
-    }
+    public List<GetAllContactResponse> GetAll()
+        => [.. repository.Search(string.Empty).Select(a => new GetAllContactResponse { Id = a.Id, Name = a.Name })];
 
-    public bool UpdateContact(int id, string name)
+    public bool UpdateContact(int id, UpdateContactRequest request)
     {
         var contact = repository.GetById(id);
         if (contact == null) return false;
-        contact.Name = name;
+        contact.Name = request.Name;
         repository.Commit();
         return true;
     }
@@ -44,21 +37,6 @@ public class ContactService(IContactRepository repository) : IContactService
     public bool DeleteContact(int id)
         => repository.Delete(id);
 
-    public List<string> Search(string search)
-    {
-        var result = new List<string>();
-        foreach (var contact in repository.Search(search))
-        {
-            result.Add(FormatContact(contact));
-        }
-        return result;
-    }
-
-    private static string FormatContact(Contact contact)
-    {
-        return $"{contact.Id}. {contact.Name}";
-    }
-
-    public List<GetAllContactResponse> GetAll()
-        => [.. repository.GetAll().Select(a => new GetAllContactResponse { Id = a.Id, Name = a.Name })];
+    public List<SearchContactResponse> Search(string search)
+        => [.. repository.Search(search).Select(a => new SearchContactResponse { Id = a.Id, Name = a.Name })];
 }

@@ -13,7 +13,9 @@ public class B_SearchContactServiceTests : BaseServiceTests
 
         var result = service.Search("el");
         Assert.Equal(2, result.Count);
-        Assert.Equal("1. Elvis", result[0]);
-        Assert.Equal("2. Elmo", result[1]);
+        Assert.Equal(1, result[0].Id);
+        Assert.Equal("Elvis", result[0].Name);
+        Assert.Equal(2, result[1].Id);
+        Assert.Equal("Elmo", result[1].Name);
     }
 }

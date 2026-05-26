@@ -1,0 +1,16 @@
+@host = http://localhost:5297
+
+###
+# @name createContact
+POST {{host}}/api/contacts
+Content-Type: application/json
+
+{
+    "name": "Ada Lovelace"
+}
+
+###
+GET {{host}}/api/contacts/{{createContact.response.body.id}}
+
+###
+DELETE {{host}}/api/contacts/{{createContact.response.body.id}}

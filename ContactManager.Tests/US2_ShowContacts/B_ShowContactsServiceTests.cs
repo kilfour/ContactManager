@@ -9,9 +9,11 @@ public class B_ShowContactsServiceTests : BaseServiceTests
     {
         repository.Add(new Contact("Elvis"));
         repository.Add(new Contact("Presley"));
-        var result = service.GetContactsOverview();
+        var result = service.GetAll();
         Assert.Equal(2, result.Count);
-        Assert.Equal("1. Elvis", result[0]);
-        Assert.Equal("2. Presley", result[1]);
+        Assert.Equal(1, result[0].Id);
+        Assert.Equal("Elvis", result[0].Name);
+        Assert.Equal(2, result[1].Id);
+        Assert.Equal("Presley", result[1].Name);
     }
 }
