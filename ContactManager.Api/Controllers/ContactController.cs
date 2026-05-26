@@ -14,11 +14,11 @@ public class ContactsController(ContactService service) : ControllerBase
         return Created($"/api/contacts/{contact.Id}", contact);
     }
 
-    // [HttpGet]
-    // public ActionResult<List<ContactDto>> GetAll()
-    // {
-    //     return Ok(service.GetAll());
-    // }
+    [HttpGet]
+    public ActionResult<List<GetAllContactResponse>> GetAll()
+    {
+        return Ok(service.GetAll());
+    }
 
     // [HttpGet("search")]
     // public ActionResult<List<ContactDto>> Search([FromQuery] string name)

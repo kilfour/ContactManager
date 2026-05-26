@@ -6,6 +6,7 @@ namespace ContactManager.Core.ServiceLayer;
 public interface IContactService
 {
     CreateContactResponse AddContact(CreateContactRequest createContactRequest);
+    List<GetAllContactResponse> GetAll();
     // bool DeleteContact(int id);
     // List<string> GetContactsOverview();
     // List<string> Search(string search);
@@ -57,4 +58,7 @@ public class ContactService(IContactRepository repository) : IContactService
     {
         return $"{contact.Id}. {contact.Name}";
     }
+
+    public List<GetAllContactResponse> GetAll()
+        => [.. repository.GetAll().Select(a => new GetAllContactResponse { Id = a.Id, Name = a.Name })];
 }
