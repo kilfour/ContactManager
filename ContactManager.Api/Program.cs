@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IContactRepository, InMemoryContactRepository>();
+builder.Services.AddSingleton<IContactRepository, InMemoryContactRepository>();
 builder.Services.AddScoped<ContactService>();
 
 var app = builder.Build();
