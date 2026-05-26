@@ -19,18 +19,5 @@ public class ContactsController(ContactService service) : ControllerBase
     {
         return Ok(service.GetAll());
     }
-
-    // [HttpGet("search")]
-    // public ActionResult<List<ContactDto>> Search([FromQuery] string name)
-    // {
-    //     return Ok(service.SearchByName(name));
-    // }
-
-    // [HttpDelete("{id}")]
-    // public IActionResult Delete(Guid id)
-    // {
-    //     service.Delete(id);
-    //     return NoContent();
-    // }
 }
 
