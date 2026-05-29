@@ -3,17 +3,16 @@ using ContactManager.Core.Domain;
 
 namespace ContactManager.Core.ServiceLayer;
 
-// public interface IContactService
-// {
-//     CreateContactResponse AddContact(CreateContactRequest createContactRequest);
-//     List<GetAllContactResponse> GetAll();
-//     // bool DeleteContact(int id);
-//     // List<string> GetContactsOverview();
-//     // List<string> Search(string search);
-//     bool UpdateContact(int id, UpdateContactRequest request);
-// }
+public interface IContactService
+{
+    CreateContactResponse AddContact(CreateContactRequest createContactRequest);
+    bool DeleteContact(int id);
+    List<GetAllContactResponse> GetAll();
+    List<SearchContactResponse> Search(string search);
+    bool UpdateContact(int id, UpdateContactRequest request);
+}
 
-public class ContactService(IContactRepository repository)
+public class ContactService(IContactRepository repository) : IContactService
 {
     public CreateContactResponse AddContact(CreateContactRequest createContactRequest)
     {

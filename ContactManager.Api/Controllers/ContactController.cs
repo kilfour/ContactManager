@@ -5,7 +5,7 @@ namespace ContactManager.Api.Controllers;
 
 [ApiController]
 [Route("api/contacts")]
-public class ContactsController(ContactService service) : ControllerBase
+public class ContactsController(IContactService service) : ControllerBase
 {
     [HttpPost]
     public ActionResult<CreateContactResponse> Create(CreateContactRequest request)
@@ -14,14 +14,14 @@ public class ContactsController(ContactService service) : ControllerBase
         return Created($"/api/contacts/{contact.Id}", contact);
     }
 
-    [HttpPut("{id:guid}")]
+    [HttpPut("{id:int}")]
     public IActionResult Update(int id, UpdateContactRequest request)
-        => service.UpdateContact(id, request) ? Ok() : NotFound();
+        => service.UpdateContact(id, request) ? NoContent() : NotFound();
 
 
-    [HttpDelete("{id:guid}")]
+    [HttpDelete("{id:int}")]
     public IActionResult Delete(int id)
-        => service.DeleteContact(id) ? Ok() : NotFound();
+        => service.DeleteContact(id) ? NoContent() : NotFound();
 
     [HttpGet]
     public ActionResult<List<GetAllContactResponse>> GetAll()
