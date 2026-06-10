@@ -54,15 +54,15 @@ public class Menu
     private bool HandleAddContact()
     {
         var name = prompter.AskForTextOnNewLine("Voer een naam in: ");
-        service.AddContact(name);
+        service.AddContact(new CreateContactRequest { Name = name });
         printer.WriteMessage($"Contact toegevoegd: {name}");
         return true;
     }
 
     private bool HandleShowContacts()
     {
-        var contactsOverview = service.GetContactsOverview();
-        var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview;
+        var contactsOverview = service.GetAll();
+        var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview.Select(FormatContact).ToList();
         printer.WriteSection("Contacten", content);
         return true;
     }
@@ -77,7 +77,7 @@ public class Menu
     private void UpdateContactById(int id)
     {
         var name = prompter.AskForTextOnNewLine("Voer een naam in: ");
-        printer.WriteIf(service.UpdateContact(id, name),
+        printer.WriteIf(service.UpdateContact(id, new UpdateContactRequest { Name = name }),
             $"Contact '{id}' bijgewerkt.",
             $"Contact '{id}' niet gevonden.");
     }
@@ -95,8 +95,18 @@ public class Menu
     {
         var search = prompter.AskForTextOnNewLine("Voer een zoekterm in: ");
         var contactsOverview = service.Search(search);
-        var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview;
+        var content = contactsOverview.Count == 0 ? ["Geen contacten gevonden."] : contactsOverview.Select(FormatContact).ToList();
         printer.WriteSection("Contacten", content);
         return true;
+    }
+
+    private static string FormatContact(GetAllContactResponse contact)
+    {
+        return $"{contact.Id}. {contact.Name}";
+    }
+
+    private static string FormatContact(SearchContactResponse contact)
+    {
+        return $"{contact.Id}. {contact.Name}";
     }
 }

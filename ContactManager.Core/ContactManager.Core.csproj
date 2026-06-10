@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="QuickPulse.Show" Version="0.1.15" />
+  </ItemGroup>
+
 </Project>

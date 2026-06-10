@@ -1,4 +1,5 @@
 using ContactManager.Core.Domain;
+using ContactManager.Core.ServiceLayer;
 
 namespace ContactManager.Tests.US3_UpdateContact;
 
@@ -9,7 +10,7 @@ public class B_UpdateContactServiceTests : BaseServiceTests
     {
         var contact = new Contact("Elviz");
         repository.Add(contact);
-        service.UpdateContact(1, "Elvis");
+        service.UpdateContact(1, new UpdateContactRequest { Name = "Elvis" });
         Assert.Equal("Elvis", contact.Name);
     }
 
@@ -18,13 +19,12 @@ public class B_UpdateContactServiceTests : BaseServiceTests
     {
         var contact = new Contact("Elviz");
         repository.Add(contact);
-        service.UpdateContact(1, "Elvis");
-        Assert.True(service.UpdateContact(1, "Elvis"));
+        Assert.True(service.UpdateContact(1, new UpdateContactRequest { Name = "Elvis" }));
     }
 
     [Fact]
-    public void UpdateContact_Returns_Null_If_Not_Found()
+    public void UpdateContact_Returns_False_If_Not_Found()
     {
-        Assert.False(service.UpdateContact(1, "Elvis"));
+        Assert.False(service.UpdateContact(1, new UpdateContactRequest { Name = "Elvis" }));
     }
 }

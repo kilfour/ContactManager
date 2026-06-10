@@ -1,27 +1,36 @@
 using ContactManager.Core.DataLayer;
 using ContactManager.Core.Domain;
+using QuickPulse.Show;
 
 namespace ContactManager.Core.ServiceLayer;
 
-public class ContactService(IContactRepository repository)
+public interface IContactService
 {
-    public void AddContact(string naam) => repository.Add(new Contact(naam));
+    CreateContactResponse AddContact(CreateContactRequest createContactRequest);
+    bool DeleteContact(int id);
+    List<GetAllContactResponse> GetAll();
+    List<SearchContactResponse> Search(string search);
+    bool UpdateContact(int id, UpdateContactRequest request);
+}
 
-    public List<string> GetContactsOverview()
+public class ContactService(IContactRepository repository) : IContactService
+{
+    public CreateContactResponse AddContact(CreateContactRequest createContactRequest)
     {
-        var result = new List<string>();
-        foreach (var contact in repository.GetAll())
-        {
-            result.Add(FormatContact(contact));
-        }
-        return result;
+        var contact = new Contact(createContactRequest.Name);
+        repository.Add(contact);
+        return new CreateContactResponse { Id = contact.Id, Name = contact.Name };
     }
 
-    public bool UpdateContact(int id, string name)
+    public List<GetAllContactResponse> GetAll()
+        => [.. repository.Search(string.Empty).Select(a => new GetAllContactResponse { Id = a.Id, Name = a.Name })];
+
+    public bool UpdateContact(int id, UpdateContactRequest request)
     {
         var contact = repository.GetById(id);
-        if (contact == null) return false;
-        contact.Name = name;
+        if (contact == null)
+            return false;
+        contact.Name = request.Name;
         repository.Commit();
         return true;
     }
@@ -29,18 +38,6 @@ public class ContactService(IContactRepository repository)
     public bool DeleteContact(int id)
         => repository.Delete(id);
 
-    public List<string> Search(string search)
-    {
-        var result = new List<string>();
-        foreach (var contact in repository.Search(search))
-        {
-            result.Add(FormatContact(contact));
-        }
-        return result;
-    }
-
-    private static string FormatContact(Contact contact)
-    {
-        return $"{contact.Id}. {contact.Name}";
-    }
+    public List<SearchContactResponse> Search(string search)
+        => [.. repository.Search(search).Select(a => new SearchContactResponse { Id = a.Id, Name = a.Name })];
 }
