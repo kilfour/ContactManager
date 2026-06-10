@@ -1,5 +1,6 @@
 using ContactManager.Core.DataLayer;
 using ContactManager.Core.Domain;
+using QuickPulse.Show;
 
 namespace ContactManager.Core.ServiceLayer;
 
@@ -27,7 +28,8 @@ public class ContactService(IContactRepository repository) : IContactService
     public bool UpdateContact(int id, UpdateContactRequest request)
     {
         var contact = repository.GetById(id);
-        if (contact == null) return false;
+        if (contact == null)
+            return false;
         contact.Name = request.Name;
         repository.Commit();
         return true;

@@ -1,5 +1,6 @@
 using ContactManager.Core.DataLayer;
 using ContactManager.Core.ServiceLayer;
+using QuickPulse.Show;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IContactRepository, InMemoryContactRepository>();
-builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddSingleton<IContactService, ContactService>();
 
 var app = builder.Build();
 
@@ -21,7 +22,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (Exception ex)
+    {
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsync($"Fout: {ex.PulseToLog("debug.log").Message}");
+    }
+});
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
